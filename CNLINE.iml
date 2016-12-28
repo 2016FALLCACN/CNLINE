@@ -22,7 +22,9 @@
           <root url="jar://$MODULE_DIR$/socket.io-client-0.1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.ideaLibSources/socket.io-client-0.1.0-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
   </component>

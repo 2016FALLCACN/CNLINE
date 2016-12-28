@@ -25,19 +25,14 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import com.github.nkzawa.socketio.client.*;
+import com.github.nkzawa.emitter.Emitter;
 
 public class Main extends Application {
 
     private static Stage window;
     private static Scene scene1, scene0, scene2;
 
-    private Socket mSocket;{
-        try {
-            mSocket = IO.socket(Constant.SERVERURL);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+    private Socket mSocket;
 
     public class UserConfig {
         public String id;
@@ -104,6 +99,12 @@ public class Main extends Application {
         // Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         window = primaryStage;
         window.setTitle("CNLINE");
+
+        /*try {
+            mSocket = IO.socket(Constant.SERVERURL);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }*/
 
         /* Scene1: Login */
         GridPane loginPage = new GridPane();
