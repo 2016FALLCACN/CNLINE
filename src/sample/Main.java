@@ -21,12 +21,23 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
+
+import com.github.nkzawa.socketio.client.*;
 
 public class Main extends Application {
 
     private static Stage window;
     private static Scene scene1, scene0, scene2;
+
+    private Socket mSocket;{
+        try {
+            mSocket = IO.socket(Constant.SERVERURL);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public class UserConfig {
         public String id;
@@ -89,8 +100,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        /* Setting: window setting */
         // Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-
         window = primaryStage;
         window.setTitle("CNLINE");
 
@@ -100,7 +111,6 @@ public class Main extends Application {
         loginPage.setHgap(10);
         loginPage.setVgap(10);
         loginPage.setPadding(new Insets(50));
-        //loginPage.setId("loginPage");
 
             /* Welcome Text */
             Text welcome = new Text("Welcome to the CNLINE");
@@ -113,6 +123,29 @@ public class Main extends Application {
             final PasswordField passwordTF = new PasswordField();
             HBox loginHBox = new HBox();
             final Button login = new Button("Login");
+            passwordTF.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent event) {
+                    if(event.getCode() == KeyCode.ENTER){
+                        String gotUsername = usernameTF.getCharacters().toString();
+                        String gotPassword = passwordTF.getCharacters().toString();
+                        Boolean loginSuccess = false;
+                        try{
+                            loginSuccess = login(gotUsername, gotPassword);
+                        } catch(Exception e) {
+                            e.printStackTrace();
+                        }
+                        if(loginSuccess){
+                        /* TODO: load user's data */
+                            window.setScene(scene2);
+                        } else {
+                            AlertBox.display("Attention", "The user info is wrong!");
+                            usernameTF.setText("");
+                            passwordTF.setText("");
+                        }
+                    }
+                }
+            });
             login.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event){
@@ -242,11 +275,13 @@ public class Main extends Application {
             /* Components */
             ListView<Label> contact = new ListView<Label>();
             ObservableList names = FXCollections.observableArrayList();
-            Label person1 = new Label("SeanLo");
-            Label person2 = new Label("Champion");
-            Label person3 = new Label("PianoPrince");
-            Label person4 = new Label("GCC");
-            names.addAll(person1, person2, person3, person4);
+            ArrayList<Label> friend = new ArrayList<Label>();
+            friend.add(new Label("Trump"));
+            friend.add(new Label("Obama"));
+            friend.add(new Label("Page"));
+            friend.add(new Label("Dijkstra"));
+            friend.add(new Label("Turing"));
+            names.addAll(friend);
             contact.setItems(names);
 
             final VBox messageArea = new VBox(20); /* TODO: maximize the size */

@@ -7,5 +7,6 @@ public class Constant {
     static final public int PWDMINLEN = 3;
     static final public int PWDMAXLEN = 20;
     static final public String USERCONFIG = "user.cfg";
+    static final public String SERVERURL = "127.0.0.1";
 
 }
