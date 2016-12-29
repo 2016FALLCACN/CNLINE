@@ -17,13 +17,14 @@ io.on('connection', function(socket) {
 	var my_client_num = conn_client;
   	clients[my_client_num] = socket;
 
-	socket.on('login',function(data){
-		console.log(data);
+	socket.on('login',function(id, pwd){
+		console.log(id);
+		console.log(pwd);
 		clients[my_client_num].emit('loginAck');
 	});
 
-	socket.on('disconnect',function(){
+	/*socket.on('disconnect',function(){
 		io.emit('all_disconnect');
 		process.exit();
-	});
+	});*/
 });
