@@ -5,10 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -23,16 +21,26 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.util.concurrent.TimeUnit;
 
 import com.github.nkzawa.socketio.client.*;
 import com.github.nkzawa.emitter.Emitter;
+import org.json.*;
 
 public class Main extends Application {
 
+    /* Layout Components */
     private static Stage window;
     private static Scene scene1, scene0, scene2;
 
+    /* Connection Variables */
     private Socket mSocket;
+    private boolean loginAck = false;
+    private boolean loginSuccess = false;
+    private AlertBox alertBox = new AlertBox();
+
+    /* Personal Data */
+    private User user;
 
     public class UserConfig {
         public String id;
@@ -53,7 +61,7 @@ public class Main extends Application {
     private boolean login(String id, String pwd)  throws Exception {
 
         try {
-            FileInputStream in = new FileInputStream(Constant.USERCONFIG);
+            FileInputStream in = new FileInputStream(Constants.USERCONFIG);
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
             String line = reader.readLine();
@@ -78,7 +86,7 @@ public class Main extends Application {
     private void register(String id, String pwd) throws Exception {
 
         try {
-            FileOutputStream out = new FileOutputStream(Constant.USERCONFIG, true);
+            FileOutputStream out = new FileOutputStream(Constants.USERCONFIG, true);
             String content = id+":"+pwd+"\n";
 
             byte[] contentInBytes = content.getBytes();
@@ -92,6 +100,14 @@ public class Main extends Application {
 
     }
 
+    private Emitter.Listener onLogin = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            loginAck = true;
+            loginSuccess = true;
+        }
+    };
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -100,11 +116,11 @@ public class Main extends Application {
         window = primaryStage;
         window.setTitle("CNLINE");
 
-        /*try {
-            mSocket = IO.socket(Constant.SERVERURL);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }*/
+        /* Setting: connection */
+        ChatApplication app = new ChatApplication();
+        mSocket = app.getSocket();
+        mSocket.on("loginAck", onLogin);
+        mSocket.connect();
 
         /* Scene1: Login */
         GridPane loginPage = new GridPane();
@@ -130,14 +146,20 @@ public class Main extends Application {
                     if(event.getCode() == KeyCode.ENTER){
                         String gotUsername = usernameTF.getCharacters().toString();
                         String gotPassword = passwordTF.getCharacters().toString();
-                        Boolean loginSuccess = false;
+                        /* Login to Server */
                         try{
-                            loginSuccess = login(gotUsername, gotPassword);
+                            /* online version */
+                            mSocket.emit("login", gotUsername, gotPassword);
+                            TimeUnit.SECONDS.sleep(1);
+                            /* offline version */
+                            // loginSuccess = login(gotUsername, gotPassword);
                         } catch(Exception e) {
                             e.printStackTrace();
                         }
-                        if(loginSuccess){
-                        /* TODO: load user's data */
+
+                        /* Change the scene or alert */
+                        if (loginSuccess) {
+                            /* TODO: load user's data */
                             window.setScene(scene2);
                         } else {
                             AlertBox.display("Attention", "The user info is wrong!");
@@ -152,14 +174,20 @@ public class Main extends Application {
                 public void handle(ActionEvent event){
                     String gotUsername = usernameTF.getCharacters().toString();
                     String gotPassword = passwordTF.getCharacters().toString();
-                    Boolean loginSuccess = false;
+                    /* Login to Server */
                     try{
-                        loginSuccess = login(gotUsername, gotPassword);
+                        /* online version */
+                        mSocket.emit("login", gotUsername, gotPassword);
+                        TimeUnit.SECONDS.sleep(1);
+                        /* offline version */
+                        // loginSuccess = login(gotUsername, gotPassword);
                     } catch(Exception e) {
                         e.printStackTrace();
                     }
-                    if(loginSuccess){
-                        /* TODO: load user's data */
+
+                    /* Change the scene or alert */
+                    if (loginSuccess) {
+                            /* TODO: load user's data */
                         window.setScene(scene2);
                     } else {
                         AlertBox.display("Attention", "The user info is wrong!");
@@ -219,9 +247,9 @@ public class Main extends Application {
                         AlertBox.display("Attention", "You haven't enter your name!");
                     } else if (repeated(gotUsername)) {
                         AlertBox.display("Attention", "This name has been registered!");
-                    } else if (gotPassword.length() < Constant.PWDMINLEN) {
+                    } else if (gotPassword.length() < Constants.PWDMINLEN) {
                         AlertBox.display("Attention", "This password is too short!");
-                    } else if (gotPassword.length() > Constant.PWDMAXLEN) {
+                    } else if (gotPassword.length() > Constants.PWDMAXLEN) {
                         AlertBox.display("Attention", "This password is too long!");
                     } else {
                         try{
@@ -234,24 +262,29 @@ public class Main extends Application {
                     }
                 }
             });
-            register.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            typePassword.setOnKeyPressed(new EventHandler<KeyEvent>() {
                 @Override
                 public void handle(KeyEvent event) {
                     String gotUsername = typeUsername.getCharacters().toString();
                     String gotPassword = typePassword.getCharacters().toString();
-
-                    if (gotUsername.equals("")) {
-                        AlertBox.display("Attention", "You haven't enter your name!");
-                    } else if (repeated(gotUsername)) {
-                        AlertBox.display("Attention", "This name has been registered!");
-                    } else if (gotPassword.length() < Constant.PWDMINLEN) {
-                        AlertBox.display("Attention", "This password is too short!");
-                    } else if (gotPassword.length() > Constant.PWDMAXLEN) {
-                        AlertBox.display("Attention", "This password is too long!");
-                    } else {
-                        AlertBox.display("Information", "Welcome! Let's start!");
-                        /* TODO */
-                        window.setScene(scene1);
+                    if(event.getCode() == KeyCode.ENTER) {
+                        if (gotUsername.equals("")) {
+                            AlertBox.display("Attention", "You haven't enter your name!");
+                        } else if (repeated(gotUsername)) {
+                            AlertBox.display("Attention", "This name has been registered!");
+                        } else if (gotPassword.length() < Constants.PWDMINLEN) {
+                            AlertBox.display("Attention", "This password is too short!");
+                        } else if (gotPassword.length() > Constants.PWDMAXLEN) {
+                            AlertBox.display("Attention", "This password is too long!");
+                        } else {
+                            try{
+                                register(gotUsername, gotPassword);
+                            } catch (Exception e){
+                                e.printStackTrace();
+                            }
+                            AlertBox.display("Information", "Success!");
+                            window.setScene(scene1);
+                        }
                     }
                 }
             });
