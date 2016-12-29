@@ -35,9 +35,8 @@ public class Main extends Application {
 
     /* Connection Variables */
     private Socket mSocket;
-    private boolean loginAck = false;
     private boolean loginSuccess = false;
-    private AlertBox alertBox = new AlertBox();
+    private boolean registerSuccess = false;
 
     /* Personal Data */
     private User user;
@@ -103,10 +102,18 @@ public class Main extends Application {
     private Emitter.Listener onLogin = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
-            System.out.println(args[0].toString());
             if(args[0].toString().equals("success")) {
                 loginSuccess = true;
-                System.out.println("equal!");
+
+            }
+        }
+    };
+
+    private Emitter.Listener onRegister = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            if(args[0].toString().equals("success")) {
+                registerSuccess = true;
             }
         }
     };
@@ -123,6 +130,7 @@ public class Main extends Application {
         ChatApplication app = new ChatApplication();
         mSocket = app.getSocket();
         mSocket.on("loginAck", onLogin);
+        mSocket.on("registerAck", onRegister);
         mSocket.connect();
 
         /* Scene1: Login */
@@ -256,16 +264,24 @@ public class Main extends Application {
                         AlertBox.display("Attention", "This password is too long!");
                     } else {
                         try{
+                            /* online version */
+                            mSocket.emit("register", gotUsername, gotPassword);
+                            TimeUnit.SECONDS.sleep(1);
+                            /* offline version */
                             register(gotUsername, gotPassword);
                         } catch (Exception e){
                             e.printStackTrace();
                         }
-                        AlertBox.display("Information", "Success!");
-                        window.setScene(scene1);
+                        if(registerSuccess) {
+                            AlertBox.display("Information", "Success!");
+                            window.setScene(scene1);
+                        } else {
+                            AlertBox.display("Attention", "This name has been registered!");
+                        }
                     }
                 }
             });
-            typePassword.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            /*typePassword.setOnKeyPressed(new EventHandler<KeyEvent>() {
                 @Override
                 public void handle(KeyEvent event) {
                     String gotUsername = typeUsername.getCharacters().toString();
@@ -290,7 +306,7 @@ public class Main extends Application {
                         }
                     }
                 }
-            });
+            });*/
 
         /* layout setting */
 
