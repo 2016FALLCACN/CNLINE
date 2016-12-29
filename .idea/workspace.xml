@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/client.js" afterPath="$PROJECT_DIR$/server/client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/server.js" afterPath="$PROJECT_DIR$/server/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/user.cfg" afterPath="$PROJECT_DIR$/server/user.cfg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/user.cfg" afterPath="$PROJECT_DIR$/user.cfg" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -84,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="278" column="45" lean-forward="true" selection-start-line="278" selection-start-column="45" selection-end-line="278" selection-end-column="45" />
+            <state relative-caret-position="2925">
+              <caret line="270" column="16" lean-forward="false" selection-start-line="270" selection-start-column="16" selection-end-line="270" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#UserConfig#0;class#Main#0" expanded="false" />
@@ -101,11 +103,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.cfg" pinned="false" current-in-tab="false">
+      <file leaf-file-name="user.cfg" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/user.cfg">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="15">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -155,12 +157,12 @@
       <list>
         <option value="$PROJECT_DIR$/src/sample/AlertBox.java" />
         <option value="$PROJECT_DIR$/src/sample/sample.fxml" />
-        <option value="$PROJECT_DIR$/user.cfg" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/sample/Constant.java" />
         <option value="$PROJECT_DIR$/src/sample/ChatApplication.java" />
         <option value="$PROJECT_DIR$/src/sample/Constants.java" />
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
+        <option value="$PROJECT_DIR$/user.cfg" />
       </list>
     </option>
   </component>
@@ -953,18 +955,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/user.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="278" column="45" lean-forward="true" selection-start-line="278" selection-start-column="45" selection-end-line="278" selection-end-column="45" />
+        <state relative-caret-position="2925">
+          <caret line="270" column="16" lean-forward="false" selection-start-line="270" selection-start-column="16" selection-end-line="270" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#UserConfig#0;class#Main#0" expanded="false" />
@@ -973,6 +967,14 @@
             <element signature="e#5844#7045#0" expanded="true" />
             <element signature="e#7044#7045#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
