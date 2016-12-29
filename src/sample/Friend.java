@@ -8,4 +8,16 @@ import java.util.ArrayList;
 public class Friend {
     private String name = "";
     private ArrayList<String> messages = new ArrayList<String>();
+
+    public Friend(String name){
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void addMessage(String msg){
+        messages.add(msg);
+    }
 }

@@ -5,6 +5,7 @@ var readline = require('readline');
 var fs = require('fs');
 
 var clients = [];
+var client_name = [];
 var conn_client = -1;
 var sequence = 0;
 // var client_num = 1;
@@ -16,32 +17,41 @@ io.on('connection', function(socket) {
 	conn_client++;
 	var my_client_num = conn_client;
   	clients[my_client_num] = socket;
+  	var client_seq_num = -1;
 
   	/* server's handler for "login" */
 	socket.on('login',function(id, pwd){
-		console.log(id);
-		console.log(pwd);
+		console.log("[Login]:"+id);
+		console.log("[Login]:"+pwd);
 		/* find valid user */
 		var valid = false;
 		var userArray = fs.readFileSync('user.cfg').toString().split("\n");
 
 		for(i in userArray) {
 			if(userArray[i] == id+":"+pwd){
+				client_seq_num = i;
 				console.log("VALID!");
 				valid = true;
 			}
 		}
 	
-		if(valid)
-			clients[my_client_num].emit('loginAck', "success");
-		else
-			clients[my_client_num].emit('loginAck', "fail");
+		if(valid) {
+			client_name[my_client_num] = id;
+			var sendArr = [];
+			for(i in userArray) {
+				var oneline = userArray[i].toString().split(":");
+				if(oneline[0] != "")
+					sendArr[i] = oneline[0];
+			}
+			clients[my_client_num].emit('loginAck', "success", sendArr);
+		} else
+			clients[my_client_num].emit('loginAck', "fail", []);
 	
 	});
 	/* server's handler for "register" */
 	socket.on('register',function(id, pwd){
-		console.log(id);
-		console.log(pwd);
+		console.log("[Register]:"+id);
+		console.log("[Register]:"+pwd);
 
 		var valid = true;
 		var userArray = fs.readFileSync('user.cfg').toString().split("\n");
@@ -58,6 +68,15 @@ io.on('connection', function(socket) {
 			clients[my_client_num].emit('registerAck', "success");
 		} else
 			clients[my_client_num].emit('registerAck', "fail");
+
+	});
+
+	socket.on('message',function(data){
+		console.log("[Message]: "+data);
+	
+		fs.appendFile("HistoricalMsg/"+client_seq_num+".cfg", data+"\n", function (err){});
+	
+		clients[my_client_num].emit('messageAck', "success");
 
 	});
 
