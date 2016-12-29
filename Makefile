@@ -36,7 +36,7 @@ objdir = out/linux/
 # sourcefiles: in terms of src/(packagename)/(source).java
 # classfiles: in terms of out/linux/(packagename)/(object).class
 sourcefiles = $(foreach dir,$(srcpackages),$(wildcard $(sourcepath)$(dir)/*.java))
-classfiles = $(addprefix out/linux/, $(subst $(sourcepath),,$(sourcefiles:.java=.class)))
+classfiles = $(addprefix $(objdir), $(subst $(sourcepath),,$(sourcefiles:.java=.class)))
 
 mainclass = sample.Main
 
@@ -71,4 +71,4 @@ makefile_debug:
 	@echo "classfiles = $(classfiles)"
 
 clean:
-	rm -rf out/linux
+	rm -rf $(objdir)
