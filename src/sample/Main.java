@@ -103,8 +103,11 @@ public class Main extends Application {
     private Emitter.Listener onLogin = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
-            loginAck = true;
-            loginSuccess = true;
+            System.out.println(args[0].toString());
+            if(args[0].toString().equals("success")) {
+                loginSuccess = true;
+                System.out.println("equal!");
+            }
         }
     };
 

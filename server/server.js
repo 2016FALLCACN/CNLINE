@@ -11,6 +11,8 @@ var sequence = 0;
 
 console.log("Server start!");
 
+var userArray = fs.readFileSync('user.cfg').toString().split("\n");
+
 io.on('connection', function(socket) {
 
 	conn_client++;
@@ -20,7 +22,21 @@ io.on('connection', function(socket) {
 	socket.on('login',function(id, pwd){
 		console.log(id);
 		console.log(pwd);
-		clients[my_client_num].emit('loginAck');
+		/* find valid user */
+		var valid = false;
+		
+		for(i in userArray) {
+			if(userArray[i] == id+":"+pwd){
+				console.log("VALID!");
+				valid = true;
+			}
+		}
+	
+		if(valid)
+			clients[my_client_num].emit('loginAck', "success");
+		else
+			clients[my_client_num].emit('loginAck', "fail");
+	
 	});
 
 	/*socket.on('disconnect',function(){
