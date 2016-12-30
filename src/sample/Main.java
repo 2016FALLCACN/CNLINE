@@ -172,48 +172,7 @@ public class Main extends Application {
         Text hintPassword = new Text("Password: ");
         final TextField typeUsername = new TextField();
         final PasswordField typePassword = new PasswordField();
-        typePassword.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                    /* TODO */
-            }
-        });
         Button submit = new Button("Submit");
-        submit.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                String gotUsername = typeUsername.getCharacters().toString();
-                String gotPassword = typePassword.getCharacters().toString();
-
-                if (gotUsername.equals("")) {
-                    AlertBox.display("Attention", "You haven't enter your name!");
-                } else if (repeated(gotUsername)) {
-                    AlertBox.display("Attention", "This name has been registered!");
-                } else if (gotPassword.length() < Constants.PWDMINLEN) {
-                    AlertBox.display("Attention", "This password is too short!");
-                } else if (gotPassword.length() > Constants.PWDMAXLEN) {
-                    AlertBox.display("Attention", "This password is too long!");
-                } else {
-                    try{
-                            /* online version */
-                        mSocket.emit("register", gotUsername, gotPassword);
-                        TimeUnit.SECONDS.sleep(1);
-                            /* offline version */
-                        register(gotUsername, gotPassword);
-                    } catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    if(registerSuccess) {
-                        AlertBox.display("Information", "Success!");
-                        window.setScene(scene1);
-                    } else {
-                        AlertBox.display("Attention", "This name has been registered!");
-                    }
-                }
-                typeUsername.setText("");
-                typePassword.setText("");
-            }
-        });
         typePassword.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -230,19 +189,21 @@ public class Main extends Application {
                     } else if (gotPassword.length() > Constants.PWDMAXLEN) {
                         AlertBox.display("Attention", "This password is too long!");
                     } else {
-                        try {
+                        try{
                             /* online version */
                             mSocket.emit("register", gotUsername, gotPassword);
                             TimeUnit.SECONDS.sleep(1);
                             /* offline version */
-                            register(gotUsername, gotPassword);
-                        } catch (Exception e) {
+                            // register(gotUsername, gotPassword);
+                        } catch (Exception e){
                             e.printStackTrace();
                         }
-                        if (registerSuccess) {
+                        if(registerSuccess) {
                             AlertBox.display("Information", "Success!");
                             window.setScene(scene1);
+                            registerSuccess = false;
                         } else {
+                        /* TODO: disconnect or repeated name */
                             AlertBox.display("Attention", "This name has been registered!");
                         }
                     }
@@ -251,6 +212,43 @@ public class Main extends Application {
                 }
             }
         });
+        /*submit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String gotUsername = typeUsername.getCharacters().toString();
+                String gotPassword = typePassword.getCharacters().toString();
+
+                if (gotUsername.equals("")) {
+                    AlertBox.display("Attention", "You haven't enter your name!");
+                } else if (repeated(gotUsername)) {
+                    AlertBox.display("Attention", "This name has been registered!");
+                } else if (gotPassword.length() < Constants.PWDMINLEN) {
+                    AlertBox.display("Attention", "This password is too short!");
+                } else if (gotPassword.length() > Constants.PWDMAXLEN) {
+                    AlertBox.display("Attention", "This password is too long!");
+                } else {
+                    try{
+                            *//* online version *//*
+                        mSocket.emit("register", gotUsername, gotPassword);
+                        TimeUnit.SECONDS.sleep(1);
+                            *//* offline version *//*
+                        // register(gotUsername, gotPassword);
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    if(registerSuccess) {
+                        AlertBox.display("Information", "Success!");
+                        window.setScene(scene1);
+                    } else {
+                        *//* TODO: disconnect or repeated name *//*
+                        AlertBox.display("Attention", "This name has been registered!");
+                    }
+                }
+                typeUsername.setText("");
+                typePassword.setText("");
+            }
+        });*/
+
 
         /* layout setting */
 
@@ -286,26 +284,35 @@ public class Main extends Application {
         // Button sendFile = new Button("file"); /* TODO: window showup */
         Button sendMessage = new Button("send");
             /* TODO: auto-newline */
-        sendMessage.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(!typeMessage.getCharacters().toString().equals("")) {
-                    messageLog.appendText(typeMessage.getCharacters().toString() + "\n"); /* auto scroll to bottom */
-                    typeMessage.setText("");
-                }
-            }
-        });
         typeMessage.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event){
                 if(event.getCode() == KeyCode.ENTER) {
                     if(!typeMessage.getCharacters().toString().equals("")) {
+                        /* offline version */
                         messageLog.appendText(typeMessage.getCharacters().toString() + "\n"); /* auto scroll to bottom */
                         typeMessage.setText("");
+                        /* TODO: online version */
+                        try{
+                            //mSocket.emit("message", );
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
         });
+        /*sendMessage.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(!typeMessage.getCharacters().toString().equals("")) {
+                    *//* TODO: send to server *//*
+                    *//**//*
+                    messageLog.appendText(typeMessage.getCharacters().toString() + "\n"); *//* auto scroll to bottom *//*
+                    typeMessage.setText("");
+                }
+            }
+        });*/
 
         /* layout setting */
 
@@ -373,25 +380,25 @@ public class Main extends Application {
                     }
                 }
             });
-            login.setOnAction(new EventHandler<ActionEvent>() {
+            /*login.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event){
                     String gotUsername = usernameTF.getCharacters().toString();
                     String gotPassword = passwordTF.getCharacters().toString();
-                    /* Login to Server */
+                    *//* Login to Server *//*
                     try{
-                        /* online version */
+                        *//* online version *//*
                         mSocket.emit("login", gotUsername, gotPassword);
                         TimeUnit.SECONDS.sleep(1);
-                        /* offline version */
+                        *//* offline version *//*
                         // loginSuccess = login(gotUsername, gotPassword);
                     } catch(Exception e) {
                         e.printStackTrace();
                     }
 
-                    /* Change the scene or alert */
+                    *//* Change the scene or alert *//*
                     if (loginSuccess) {
-                        /* TODO: load user's data */
+                        *//* TODO: load user's data *//*
                         window.setScene(scene2);
                     } else {
                         AlertBox.display("Attention", "The user info is wrong!");
@@ -399,7 +406,7 @@ public class Main extends Application {
                         passwordTF.setText("");
                     }
                 }
-            });
+            });*/
             HBox registerHBox = new HBox();
             Text registerHint = new Text("have no account yet?  ");
             registerHint.setFont(Font.font ("Verdana", 12));
