@@ -173,6 +173,13 @@ public class Main extends Application {
         final TextField typeUsername = new TextField();
         final PasswordField typePassword = new PasswordField();
         Button submit = new Button("Submit");
+        Button cancel = new Button("Cancel");
+        cancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                window.setScene(scene1);
+            }
+        });
         typePassword.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -257,6 +264,7 @@ public class Main extends Application {
         registerPage.add(registerUsername, 0, 0);
         registerPage.add(registerPassword,0,1);
         registerPage.add(submit, 0, 2);
+        registerPage.add(cancel, 0, 3);
 
         scene0 = new Scene(registerPage, 720, 540);
 
