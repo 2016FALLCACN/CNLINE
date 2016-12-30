@@ -4,11 +4,10 @@ var sleep = require('sleep');
 var readline = require('readline');
 var fs = require('fs');
 
-var clients = [];
-var client_name = [];
-var conn_client = -1;
-var sequence = 0;
-// var client_num = 1;
+var clients = []; // socket of connected client
+var client_name = []; // username of connected client
+var client_userid = []; // userid of connected client
+var conn_client = -1; // index of clients[] and client_name(online)
 
 console.log("Server start!");
 
@@ -17,7 +16,6 @@ io.on('connection', function(socket) {
 	conn_client++;
 	var my_client_num = conn_client;
   	clients[my_client_num] = socket;
-  	var client_seq_num = -1;
 
   	/* server's handler for "login" */
 	socket.on('login',function(id, pwd){
@@ -29,7 +27,7 @@ io.on('connection', function(socket) {
 
 		for(i in userArray) {
 			if(userArray[i] == id+":"+pwd){
-				client_seq_num = i;
+				client_userid[my_client_num] = i;
 				console.log("VALID!");
 				valid = true;
 			}
@@ -65,16 +63,28 @@ io.on('connection', function(socket) {
 
 		if(valid) {
 			fs.appendFile('user.cfg', id+":"+pwd+"\n", function (err){});
-			clients[my_client_num].emit('registerAck', "success");
+			io.to(socket.id).emit('registerAck', "success");
 		} else
-			clients[my_client_num].emit('registerAck', "fail");
+			io.to(socket.id).emit('registerAck', "fail");
 
 	});
 
-	socket.on('message',function(data){
+	socket.on('message',function(objectName ,data){
+		console.log("[Message to]: "+objectName);
 		console.log("[Message]: "+data);
-	
-		fs.appendFile("HistoricalMsg/"+client_seq_num+".cfg", data+"\n", function (err){});
+
+		/* send to the other */
+		var objectIndex;
+		for(i in client_name) {
+			if(client_name[i] == objectName){
+				objectIndex = i;
+				break;
+			}
+		}
+		clients[objectIndex].emit('messageFromOther', client_name[my_client_num], data);
+		/* write to file */
+		// var first, second;
+		// fs.appendFile("HistoricalMsg/"+first+second+".cfg", data+"\n", function (err){});
 	
 		clients[my_client_num].emit('messageAck', "success");
 

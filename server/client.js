@@ -19,7 +19,8 @@ stdin.addListener("data", function(d) {
     // end with a linefeed.  so we (rather crudely) account for that  
     // with toString() and then trim() 
     var data = d.toString().trim();
-    socket.emit('message', data);
+    var arr = data.toString().split(":");
+    socket.emit('message', arr[0], arr[1]);
 });
 
 socket.on('registerAck',function(){
@@ -28,4 +29,8 @@ socket.on('registerAck',function(){
 
 socket.on('messageAck',function(){
         console.log("message: ack success!");
+});
+
+socket.on('messageFromOther',function(name, data){
+        console.log("message from "+name+": "+data);
 });
