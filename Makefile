@@ -46,24 +46,28 @@ cssdst = $(objdir)sample/
 
 
 
-default: dirs packages
+default: note dirs packages css
+	
+
+.PHONY: clean run_client makefile_debug auto help note
+
+auto: default run_client
+
+css:
 	@echo "Creating stylesheet"
 	@cp $(csssrc) $(cssdst)
-
-.PHONY: clean run_client makefile_debug
 
 dirs:
 	@echo "Creating $(objdir)"
 	@mkdir -p $(objdir)
 
-packages: $(srcpackages)
-
-sample: $(sourcefiles)
+packages: $(sourcefiles)
 	@echo "Building packages"
 	@javac -d $(objdir) -classpath $(javalibs) -sourcepath $(sourcepath) $^
 
 	
 run_client: 
+	@echo "Running..."
 	@java -classpath $(javalibs):$(objdir)  $(mainclass)
 
 makefile_debug:
@@ -72,3 +76,9 @@ makefile_debug:
 
 clean:
 	rm -rf $(objdir)
+
+note:
+	@echo "Note: If you don't know how to use this Makefile, type 'make help'."
+help:
+	@echo "Usage: make [default | auto | run_client | clean]"
+	@echo "Note: 'make auto' combines 'make (default)' and 'make run_client'."

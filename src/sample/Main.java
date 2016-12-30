@@ -18,6 +18,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+// for fancy features
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Paint;
+import javafx.geometry.Pos;
+import java.util.regex.*;
+
+
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -233,6 +242,135 @@ public class Main extends Application {
                 }
             }
         });
+
+        // fancy feature 1: Password Strength Indicator
+
+        Label strengthIndicator = new Label("Password Strength Meter");
+        strengthIndicator.setMinWidth(250);
+        strengthIndicator.setMinHeight(20);
+        strengthIndicator.setAlignment(Pos.CENTER);
+        
+
+        typePassword.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                String gotPassword = typePassword.getCharacters().toString();
+                int strengthScore = strengthGrader(gotPassword);
+                //System.out.printf("You typed something: %s\n", gotPassword); 
+                //System.out.printf("Your score: %d\n", strengthScore); 
+                meterOutput(strengthScore);
+
+            }
+            private void meterOutput(int score) {
+                int rate = 0;
+                if (score < 0)
+                    rate = score;
+                else if (0 <= score && score < 25)
+                    rate = 0;
+                else if (score < 50)
+                    rate = 1;
+                else if (score < 75)
+                    rate = 2;
+                else if (score < 100)
+                    rate = 3;
+                else
+                    rate = 4;
+
+                switch (rate) {
+                    case -1:
+                        strengthIndicator.setText("Password Strength Meter");
+                        strengthIndicator.setBackground(new Background(new BackgroundFill(null, null, null)));
+                        break;
+                    case -2:
+                        strengthIndicator.setText("Password length too short!");
+                        strengthIndicator.setBackground(new Background(new BackgroundFill(Paint.valueOf("#b3b3b3"), null, null)));
+                        break;
+                    case -3:
+                        strengthIndicator.setText("Password length too long!");
+                        strengthIndicator.setBackground(new Background(new BackgroundFill(Paint.valueOf("#b3b3b3"), null, null)));
+                        break;
+                    case 0:
+                        strengthIndicator.setText("Trash!");
+                        strengthIndicator.setBackground(new Background(new BackgroundFill(Paint.valueOf("#ff0000"), null, null)));
+                        break;
+                    case 1:
+                        strengthIndicator.setText("Weak!");
+                        strengthIndicator.setBackground(new Background(new BackgroundFill(Paint.valueOf("#ff7b00"), null, null)));
+                        break;
+                    case 2:
+                        strengthIndicator.setText("Average!");
+                        strengthIndicator.setBackground(new Background(new BackgroundFill(Paint.valueOf("#ffff00"), null, null)));
+                        break;
+                    case 3:
+                        strengthIndicator.setText("Strong!");
+                        strengthIndicator.setBackground(new Background(new BackgroundFill(Paint.valueOf("#007fff"), null, null)));
+                        break;
+                    case 4:
+                        strengthIndicator.setText("Secure!");
+                        strengthIndicator.setBackground(new Background(new BackgroundFill(Paint.valueOf("#00ff00"), null, null)));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            // derived from https://code.tutsplus.com/tutorials/build-a-simple-password-strength-checker--net-7565
+            private int strengthGrader(String gotPassword) {
+                int score, baseScore;
+                if (gotPassword.length() >= Constants.PWDMINLEN && gotPassword.length() <= Constants.PWDMAXLEN) {
+                    baseScore = 40;
+                    int upperCount = 0, numberCount = 0, symbolCount = 0, bonus = 0;
+                    boolean flatLower = false, flatNumber = false;
+                    int excess = gotPassword.length() - Constants.PWDMINLEN;
+
+                    Pattern p = Pattern.compile("[A-Z]");
+                    for (int i = 0; i < gotPassword.length(); i++) {
+                        Matcher m = p.matcher(gotPassword.substring(i,i+1));
+                        if (m.matches()) 
+                            upperCount++;
+                    }
+                    p = Pattern.compile("[0-9]");
+                    for (int i = 0; i < gotPassword.length(); i++) {
+                        Matcher m = p.matcher(gotPassword.substring(i,i+1));
+                        if (m.matches()) 
+                            numberCount++;
+                    }
+                    p = Pattern.compile("[!@#$%^&*?_~]");
+                    for (int i = 0; i < gotPassword.length(); i++) {
+                        Matcher m = p.matcher(gotPassword.substring(i,i+1));
+                        if (m.matches()) 
+                            symbolCount++;
+                    }
+
+                    if (upperCount > 0 && numberCount > 0 && symbolCount > 0)
+                        bonus = 25;
+                    else if ( (upperCount > 0 && numberCount > 0) || (upperCount > 0 && symbolCount > 0) || (numberCount > 0 && symbolCount > 0) )
+                        bonus = 15;
+
+                    p = Pattern.compile("^[a-z]+$");
+                    Matcher m = p.matcher(gotPassword);
+                    if (m.matches())
+                        flatLower = true;
+                    p = Pattern.compile("^[0-9]+$");
+                    m = p.matcher(gotPassword);
+                    if (m.matches())
+                        flatNumber = true;
+
+                    score = baseScore + (excess*3) + (upperCount*5) + (numberCount*4) + (symbolCount*5) + bonus + ( (flatLower)? -20 : 0 ) + ( (flatNumber)? -40 : 0 );
+
+                }
+                else if (gotPassword.length() == 0) {
+                    score = -1;
+                }
+                else if (gotPassword.length() < Constants.PWDMINLEN) {
+                    score = -2;
+                }
+                else {
+                    score = -3;
+                }
+                return score;
+            }
+        });
+
         /*submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -277,8 +415,9 @@ public class Main extends Application {
         registerPassword.getChildren().addAll(hintPassword, typePassword);
         registerPage.add(registerUsername, 0, 0);
         registerPage.add(registerPassword,0,1);
-        registerPage.add(submit, 0, 2);
-        registerPage.add(cancel, 0, 3);
+        registerPage.add(strengthIndicator, 0, 2); // fancy feature 1
+        registerPage.add(submit, 0, 3);
+        registerPage.add(cancel, 0, 4);
 
         scene0 = new Scene(registerPage, 720, 540);
 
