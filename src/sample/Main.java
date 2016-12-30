@@ -41,6 +41,8 @@ public class Main extends Application {
 
     /* Personal Data */
     private User user;
+    private String nowTalking = "";
+    private String nowMessage = "";
 
     public class UserConfig {
         public String id;
@@ -143,6 +145,17 @@ public class Main extends Application {
         }
     };
 
+    private Emitter.Listener onMessageReceived = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            System.out.println(nowTalking);
+            if(args[0].toString().equals(nowTalking)) {
+                nowMessage = args[1].toString();
+                System.out.println(nowMessage);
+            }
+        }
+    };
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -157,6 +170,7 @@ public class Main extends Application {
         mSocket.on("loginAck", onLogin);
         mSocket.on("registerAck", onRegister);
         mSocket.on("messageAck", onMessage);
+        mSocket.on("messageFromOther", onMessageReceived);
         mSocket.connect();
 
         /* Scene0: Register */
@@ -277,9 +291,9 @@ public class Main extends Application {
 
             /* Components */
             /* [!] Scene2's Components */
-        final ListView<Label> contact = new ListView<Label>();
+        final ListView<Button> contact = new ListView<Button>();
         final ObservableList names = FXCollections.observableArrayList();
-        final ArrayList<Label> friend = new ArrayList<Label>();
+        final ArrayList<Button> friend = new ArrayList<Button>();
         names.addAll(friend);
         contact.setItems(names);
             /* =================== */
@@ -375,7 +389,24 @@ public class Main extends Application {
                         if (loginSuccess) {
                             /* TODO: load user's data */
                             for(int i = 0 ; i < user.friends.size(); i++){
-                                friend.add(new Label(user.friends.get(i).getName()));
+                                final Button tmp = new Button(user.friends.get(i).getName());
+                                tmp.setOnAction(new EventHandler<ActionEvent>() {
+                                    @Override
+                                    public void handle(ActionEvent event) {
+                                        /* TODO: load offline messages */
+                                        if(nowTalking != tmp.getText()) {
+                                            messageLog.setText("");
+                                            nowTalking = tmp.getText();
+                                        }
+                                        /*try {
+                                            TimeUnit.SECONDS.sleep(1);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        messageLog.appendText(nowMessage);*/
+                                    }
+                                });
+                                friend.add(tmp);
                             }
                             names.addAll(friend);
                             contact.setItems(names);

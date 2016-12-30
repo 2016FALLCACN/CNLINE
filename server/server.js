@@ -75,13 +75,17 @@ io.on('connection', function(socket) {
 
 		/* send to the other */
 		var objectIndex;
+		var find = false;
 		for(i in client_name) {
 			if(client_name[i] == objectName){
 				objectIndex = i;
+				find = true;
+				console.log("FIND YOU!");
 				break;
 			}
 		}
-		clients[objectIndex].emit('messageFromOther', client_name[my_client_num], data);
+		if(find)
+			clients[objectIndex].emit('messageFromOther', client_name[my_client_num], data);
 		/* write to file */
 		// var first, second;
 		// fs.appendFile("HistoricalMsg/"+first+second+".cfg", data+"\n", function (err){});
