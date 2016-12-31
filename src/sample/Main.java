@@ -162,7 +162,7 @@ public class Main extends Application {
             System.out.println(nowTalking);
             if(args[0].toString().equals(nowTalking)) {
                 nowMessage = args[1].toString();
-                System.out.println(nowMessage);
+              	System.out.println(nowMessage);
             }
         }
     };
@@ -484,10 +484,10 @@ public class Main extends Application {
                     if(!typeMessage.getCharacters().toString().equals("")) {
                         /* offline version */
                         messageLog.appendText(typeMessage.getCharacters().toString() + "\n"); /* auto scroll to bottom */
-                        typeMessage.setText("");
                         /* TODO: online version */
                         try{
-                            //mSocket.emit("message", );
+                            mSocket.emit("message", nowTalking, typeMessage.getCharacters().toString() + "\n");
+			    typeMessage.setText("");
                         }catch (Exception e){
                             e.printStackTrace();
                         }
