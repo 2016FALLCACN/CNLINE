@@ -199,9 +199,19 @@ public class Main extends Application {
         final PasswordField typePassword = new PasswordField();
         Button submit = new Button("Submit");
         Button cancel = new Button("Cancel");
+
+        Label strengthIndicator = new Label("Password Strength Meter"); // fancy feature 1: Password Strength Indicator
+
+
         cancel.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                typeUsername.setText("");
+                typePassword.setText("");
+
+                strengthIndicator.setText("Password Strength Meter");
+                strengthIndicator.setBackground(new Background(new BackgroundFill(null, null, null))); // fancy feature 1: Password Strength Indicator
+
                 window.setScene(scene1);
             }
         });
@@ -241,13 +251,15 @@ public class Main extends Application {
                     }
                     typeUsername.setText("");
                     typePassword.setText("");
+
+                    strengthIndicator.setText("Password Strength Meter");
+                    strengthIndicator.setBackground(new Background(new BackgroundFill(null, null, null))); // fancy feature 1: Password Strength Indicator
                 }
             }
         });
 
         // fancy feature 1: Password Strength Indicator
 
-        Label strengthIndicator = new Label("Password Strength Meter");
         strengthIndicator.setMinWidth(250);
         strengthIndicator.setMinHeight(20);
         strengthIndicator.setAlignment(Pos.CENTER);
@@ -407,6 +419,9 @@ public class Main extends Application {
                 }
                 typeUsername.setText("");
                 typePassword.setText("");
+
+                strengthIndicator.setText("Password Strength Meter");
+                strengthIndicator.setBackground(new Background(new BackgroundFill(null, null, null))); // fancy feature 1: Password Strength Indicator
             }
         });*/
 
