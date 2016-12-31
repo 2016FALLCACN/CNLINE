@@ -3,6 +3,8 @@ package sample;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -430,17 +432,32 @@ public class Main extends Application {
 
             /* Components */
             /* [!] Scene2's Components */
-        final ListView<Button> contact = new ListView<Button>();
-        final ObservableList names = FXCollections.observableArrayList();
-        final ArrayList<Button> friend = new ArrayList<Button>();
-        names.addAll(friend);
-        contact.setItems(names);
+
             /* =================== */
 
         final VBox messageArea = new VBox(20); /* TODO: maximize the size */
         HBox messageInput = new HBox(10);
         final TextArea messageLog = new TextArea();
         messageLog.setEditable(false);
+	
+        final ListView<String> contact = new ListView<String>();
+        final ObservableList names = FXCollections.observableArrayList();
+        final ArrayList<String> friend = new ArrayList<String>();
+        names.addAll(friend);
+        contact.setItems(names);
+	contact.getSelectionModel().selectedItemProperty().addListener(
+		new ChangeListener<String>() {
+			public void changed(ObservableValue<? extends String> ov,
+				String old_val, String new_val) {
+				System.out.println(new_val);
+				if(!nowTalking.equals(new_val)) {
+					messageLog.setText("");
+					nowTalking = new_val;
+				}
+			}
+		}
+	);
+
         final TextField typeMessage = new TextField();
         // Button sendFile = new Button("file"); /* TODO: window showup */
         Button sendMessage = new Button("send");
@@ -528,23 +545,24 @@ public class Main extends Application {
                         if (loginSuccess) {
                             /* TODO: load user's data */
                             for(int i = 0 ; i < user.friends.size(); i++){
-                                final Button tmp = new Button(user.friends.get(i).getName());
-                                tmp.setOnAction(new EventHandler<ActionEvent>() {
-                                    @Override
-                                    public void handle(ActionEvent event) {
+                                //final Button tmp = new Button(user.friends.get(i).getName());
+                                final String tmp = user.friends.get(i).getName();
+                               // tmp.setOnAction(new EventHandler<ActionEvent>() {
+                               //     @Override
+                               //     public void handle(ActionEvent event) {
                                         /* TODO: load offline messages */
-                                        if(nowTalking != tmp.getText()) {
-                                            messageLog.setText("");
-                                            nowTalking = tmp.getText();
-                                        }
+                               //         if(!nowTalking.equals(tmp)) {
+                               //             messageLog.setText("");
+                               //             nowTalking = tmp;
+                               //         }
                                         /*try {
                                             TimeUnit.SECONDS.sleep(1);
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }
                                         messageLog.appendText(nowMessage);*/
-                                    }
-                                });
+                               //     }
+                               // });
                                 friend.add(tmp);
                             }
                             names.addAll(friend);
