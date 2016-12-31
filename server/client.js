@@ -1,6 +1,5 @@
 var io = require('socket.io-client');
 var fs = require('fs');
-var sleep = require('sleep');
 
 var my_number;
 

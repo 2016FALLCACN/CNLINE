@@ -1,6 +1,5 @@
 var io = require('socket.io').listen(8000);
 var cp = require('child_process');
-var sleep = require('sleep');
 var readline = require('readline');
 var fs = require('fs');
 
@@ -81,7 +80,7 @@ io.on('connection', function(socket) {
 				objectIndex = i;
 				find = true;
 				console.log("FIND YOU!");
-				break;
+			//	break;
 			}
 		}
 		if(find)

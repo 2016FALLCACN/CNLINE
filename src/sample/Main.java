@@ -5,6 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -54,6 +56,8 @@ public class Main extends Application {
     private User user;
     private String nowTalking = "";
     private String nowMessage = "";
+    /* Message Display Enable*/
+    private BooleanProperty displayOnScreen = new SimpleBooleanProperty(false);
 
     public class UserConfig {
         public String id;
@@ -163,6 +167,7 @@ public class Main extends Application {
             if(args[0].toString().equals(nowTalking)) {
                 nowMessage = args[1].toString();
               	System.out.println(nowMessage);
+                displayOnScreen.set(!displayOnScreen.get());
             }
         }
     };
@@ -460,19 +465,29 @@ public class Main extends Application {
         final ArrayList<String> friend = new ArrayList<String>();
         names.addAll(friend);
         contact.setItems(names);
-	contact.getSelectionModel().selectedItemProperty().addListener(
-		new ChangeListener<String>() {
-			public void changed(ObservableValue<? extends String> ov,
-				String old_val, String new_val) {
-				System.out.println(new_val);
-				if(!nowTalking.equals(new_val)) {
-					messageLog.setText("");
-					nowTalking = new_val;
-				}
-			}
-		}
-	);
+	    contact.getSelectionModel().selectedItemProperty().addListener(
+		    new ChangeListener<String>() {
+			    public void changed(ObservableValue<? extends String> ov,
+				    String old_val, String new_val) {
+				    System.out.println(new_val);
+				    if(!nowTalking.equals(new_val)) {
+				    	messageLog.setText("");
+					    nowTalking = new_val;
+	    			}
+		    	}
+    		}
+    	);
 
+        displayOnScreen.addListener(
+            new ChangeListener<Boolean>() {
+                public void changed(ObservableValue<? extends Boolean> ov, 
+                    Boolean old_val, Boolean new_val) {
+                        /* auto scroll to bottom */
+                        messageLog.appendText(nowTalking+":"+nowMessage+"\n");  
+                        //displayOnScreen.set(!displayOnScreen.get());
+                    }
+            }
+        );
         final TextField typeMessage = new TextField();
         // Button sendFile = new Button("file"); /* TODO: window showup */
         Button sendMessage = new Button("send");
@@ -483,10 +498,10 @@ public class Main extends Application {
                 if(event.getCode() == KeyCode.ENTER) {
                     if(!typeMessage.getCharacters().toString().equals("")) {
                         /* offline version */
-                        messageLog.appendText(typeMessage.getCharacters().toString() + "\n"); /* auto scroll to bottom */
+                        messageLog.appendText("Owner:"+typeMessage.getCharacters().toString() + "\n"); /* auto scroll to bottom */
                         /* TODO: online version */
                         try{
-                            mSocket.emit("message", nowTalking, typeMessage.getCharacters().toString() + "\n");
+                            mSocket.emit("message", nowTalking, typeMessage.getCharacters().toString());
 			    typeMessage.setText("");
                         }catch (Exception e){
                             e.printStackTrace();
