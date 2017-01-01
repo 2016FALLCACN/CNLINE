@@ -19,7 +19,28 @@ stdin.addListener("data", function(d) {
     // with toString() and then trim() 
     var data = d.toString().trim();
     var arr = data.toString().split(":");
-    socket.emit('message', arr[0], arr[1]);
+    var buff;
+    if (arr[0] === "put") {
+        fs.readFile(arr[2], 'binary', function(err, data) {
+            if (err)
+                return console.log(err);
+            else {
+                socket.emit('fileUpload', arr[1], arr[2], data);
+            }
+        });
+    }
+    else if (arr[0] === "get") {
+        fs.readFile(arr[1], 'binary', function(err, data) {
+            if (err)
+                return console.log(err);
+            else {
+                socket.emit('fileUpload', arr[1], data);
+            }
+        });
+    }
+    else {
+        socket.emit('message', arr[0], arr[1]);
+    }
 });
 
 socket.on('registerAck',function(){
@@ -32,4 +53,10 @@ socket.on('messageAck',function(){
 
 socket.on('messageFromOther',function(name, data){
         console.log("message from "+name+": "+data);
+});
+
+
+socket.on('fileDownloadAck',function(filename, data){
+        fs.writeFileSync(filename, data, 'binary');
+        console.log("get "+filename+"success");
 });

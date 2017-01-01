@@ -10,6 +10,30 @@ var conn_client = -1; // index of clients[] and client_name(online)
 
 console.log("Server start!");
 
+
+var userArray = fs.readFileSync('user.cfg').toString().split("\n");
+
+/*create directory tree to store upload files*/
+var rootDir = "uploads"; 
+
+try {
+  fs.accessSync(rootDir);
+} catch (e) {
+  fs.mkdirSync(rootDir);
+}
+
+var tokens = [];
+
+for (i in userArray) {
+    tokens = userArray[i].split(":");
+    console.log(tokens[0]);
+    try {
+        fs.accessSync(rootDir+"/"+tokens[0]);
+    } catch (e) {
+        fs.mkdirSync(rootDir+"/"+tokens[0]);
+    }
+}
+
 io.on('connection', function(socket) {
 
 	conn_client++;
@@ -22,7 +46,6 @@ io.on('connection', function(socket) {
 		console.log("[Login]:"+pwd);
 		/* find valid user */
 		var valid = false;
-		var userArray = fs.readFileSync('user.cfg').toString().split("\n");
 
 		for(i in userArray) {
 			if(userArray[i] == id+":"+pwd){
@@ -51,7 +74,6 @@ io.on('connection', function(socket) {
 		console.log("[Register]:"+pwd);
 
 		var valid = true;
-		var userArray = fs.readFileSync('user.cfg').toString().split("\n");
 		for(i in userArray) {
 			var arr = userArray[i].toString().split(":");
 			if(arr[0] == id){
@@ -62,6 +84,11 @@ io.on('connection', function(socket) {
 
 		if(valid) {
 			fs.appendFile('user.cfg', id+":"+pwd+"\n", function (err){});
+            try {
+                fs.accessSync(rootDir+"/"+id);
+            } catch (e) {
+                fs.mkdirSync(rootDir+"/"+id);
+            }
 			io.to(socket.id).emit('registerAck', "success");
 		} else
 			io.to(socket.id).emit('registerAck', "fail");
@@ -93,6 +120,38 @@ io.on('connection', function(socket) {
 
 	});
 
+	socket.on('fileUpload',function(objectName , filename, data){
+		console.log("[File to]: "+objectName);
+		console.log("[File Name]: "+filename);
+
+		/* send to the other */
+		var objectIndex;
+		var find = false;
+		for(i in userArray) {
+            var validUser = userArray[i].toString().split(":");
+			if(validUser[0] == objectName){
+				find = true;
+				console.log("FIND YOU!");
+			}
+		}
+		if (find) {
+            fs.writeFileSync(rootDir+"/"+objectName+"/"+filename, data, 'binary');
+            console.log("file upload success!");
+	    }	
+        clients[my_client_num].emit('fileUploadAck', "success");
+
+	});
+	
+    socket.on('fileDownload',function(filename, data){
+		console.log("[File request]: "+objectName);
+		console.log("[File Name]: "+filename);
+
+		/* send to the other */
+        fs.readFileSync(rootDir+"/"+objectName+"/"+filename, data, 'binary');
+        console.log("file download success!");
+        io.to(socket.id).emit('fileDownloadAck', filename, data);
+
+	});
 	/*socket.on('disconnect',function(){
 		io.emit('all_disconnect');
 		process.exit();
