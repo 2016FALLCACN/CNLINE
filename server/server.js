@@ -142,12 +142,19 @@ io.on('connection', function(socket) {
 
 	});
 	
-    socket.on('fileDownload',function(filename, data){
-		console.log("[File request]: "+objectName);
+    socket.on('fileDownload',function(usrName, filename){
+		for(i in userArray) {
+            var validUser = userArray[i].toString().split(":");
+			if(validUser[0] == usrName){
+				find = true;
+				console.log("FIND YOU!");
+			}
+		}
+		console.log("[File request]: "+usrName);
 		console.log("[File Name]: "+filename);
-
 		/* send to the other */
-        fs.readFileSync(rootDir+"/"+objectName+"/"+filename, data, 'binary');
+        var data;
+        fs.readFileSync(rootDir+"/"+usrName+"/"+filename, data, 'binary');
         console.log("file download success!");
         io.to(socket.id).emit('fileDownloadAck', filename, data);
 

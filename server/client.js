@@ -8,6 +8,8 @@ var socket = io.connect('http://127.0.0.1:8000');
 var args = process.argv.slice(2);
 socket.emit('login', args[0], args[1]);
 
+var usrName = args[0];
+
 socket.on('loginAck',function(){
         console.log("login: ack success!");
 });
@@ -30,13 +32,7 @@ stdin.addListener("data", function(d) {
         });
     }
     else if (arr[0] === "get") {
-        fs.readFile(arr[1], 'binary', function(err, data) {
-            if (err)
-                return console.log(err);
-            else {
-                socket.emit('fileUpload', arr[1], data);
-            }
-        });
+        socket.emit('fileDownload', usrName, arr[1]);
     }
     else {
         socket.emit('message', arr[0], arr[1]);
@@ -57,6 +53,6 @@ socket.on('messageFromOther',function(name, data){
 
 
 socket.on('fileDownloadAck',function(filename, data){
-        fs.writeFileSync(filename, data, 'binary');
-        console.log("get "+filename+"success");
+        fs.writeFile("../"+filename, data, 'binary');
+        console.log("get "+filename+" success");
 });
