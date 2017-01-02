@@ -1,6 +1,7 @@
-var io = require('socket.io').listen(8000);
 var cp = require('child_process');
 var readline = require('readline');
+
+var io = require('socket.io').listen(8000);
 var fs = require('fs');
 
 var clients = []; // socket of connected client
@@ -47,6 +48,7 @@ io.on('connection', function(socket) {
 		/* find valid user */
 		var valid = false;
 
+        userArray = fs.readFileSync('user.cfg').toString().split("\n");
 		for(i in userArray) {
 			if(userArray[i] == id+":"+pwd){
 				client_userid[my_client_num] = i;
@@ -73,6 +75,7 @@ io.on('connection', function(socket) {
 		console.log("[Register]:"+id);
 		console.log("[Register]:"+pwd);
 
+        userArray = fs.readFileSync('user.cfg').toString().split("\n");
 		var valid = true;
 		for(i in userArray) {
 			var arr = userArray[i].toString().split(":");
@@ -125,6 +128,7 @@ io.on('connection', function(socket) {
 		console.log("[File Name]: "+filename);
 
 		/* send to the other */
+        userArray = fs.readFileSync('user.cfg').toString().split("\n");
 		var objectIndex;
 		var find = false;
 		for(i in userArray) {
@@ -143,6 +147,7 @@ io.on('connection', function(socket) {
 	});
 	
     socket.on('fileDownload',function(usrName, filename){
+        userArray = fs.readFileSync('user.cfg').toString().split("\n");
 		for(i in userArray) {
             var validUser = userArray[i].toString().split(":");
 			if(validUser[0] == usrName){
