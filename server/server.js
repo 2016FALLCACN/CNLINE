@@ -92,6 +92,10 @@ io.on('connection', function(socket) {
             } catch (e) {
                 fs.mkdirSync(rootDir+"/"+id);
             }
+            // [MSGLOG] add a directory for message logs
+			if (!fs.existsSync("message_logs/" + id)){
+    			fs.mkdirSync("message_logs/" + id);
+			}
 			io.to(socket.id).emit('registerAck', "success");
 		} else
 			io.to(socket.id).emit('registerAck', "fail");
@@ -115,12 +119,44 @@ io.on('connection', function(socket) {
 		}
 		if(find)
 			clients[objectIndex].emit('messageFromOther', client_name[my_client_num], data);
+
+		// [MSGLOG] append chat entry to a file
+			var logfs = require('fs');
+			var folder_name = (client_name[my_client_num] < objectName)? client_name[my_client_num] : objectName;
+			var file_name = ( (client_name[my_client_num] >= objectName)? client_name[my_client_num] : objectName);
+			console.log("Writing file on : " + "message_logs/" + folder_name + "/" + file_name + ".log");
+			fs.appendFile("message_logs/" + folder_name + "/" + file_name + ".log", "[" + client_name[my_client_num] + "]" + data + "\n" , 'utf8', function (err) {
+  				if (err) return console.log(err);});
 		/* write to file */
 		// var first, second;
 		// fs.appendFile("HistoricalMsg/"+first+second+".cfg", data+"\n", function (err){});
 	
 		clients[my_client_num].emit('messageAck', "success");
 
+	});
+
+	// [MSGLOG]
+	socket.on('getLog', function(objectName) {
+		console.log("[Log request]: ("  + client_name[my_client_num] + ", " + objectName + ")" );
+		var folder_name = (client_name[my_client_num] < objectName)? client_name[my_client_num] : objectName;
+		var file_name = ( (client_name[my_client_num] >= objectName)? client_name[my_client_num] : objectName);
+		var path = "message_logs/" + folder_name + "/" + file_name + ".log";
+
+
+		var count = 0;
+		if (fs.existsSync(path)) {
+			var logArray = fs.readFileSync(path).toString().split("\n");
+			for (i in logArray) {
+				if (logArray[i].length > 0) {
+					var entryUser = logArray[i].slice(1, logArray[i].indexOf(']'));
+					var entryMsg = logArray[i].slice(logArray[i].indexOf(']') + 1);
+					clients[my_client_num].emit('logData', "MSG", count.toString(), entryUser, entryMsg);
+					count++;
+				}
+			}
+		}
+		clients[my_client_num].emit('logData', "FIN", count.toString(), " ", " ");
+		
 	});
 
 	socket.on('fileUpload',function(objectName , filename, data){

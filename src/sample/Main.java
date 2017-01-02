@@ -51,13 +51,17 @@ public class Main extends Application {
     private boolean loginSuccess = false;
     private boolean registerSuccess = false;
     private boolean messageSuccess = false;
+    private boolean logTransmit = false;
 
     /* Personal Data */
     private User user;
     private String nowTalking = "";
     private String nowMessage = "";
+
+    private String logUser = "";
     /* Message Display Enable*/
     private BooleanProperty displayOnScreen = new SimpleBooleanProperty(false);
+    private BooleanProperty logNotice = new SimpleBooleanProperty(false);
 
     public class UserConfig {
         public String id;
@@ -171,6 +175,27 @@ public class Main extends Application {
             }
         }
     };
+// FORMAT: ("MSG"/"FIN") (NUM) (USER) (CONTENTS)
+    private Emitter.Listener onLogReceived = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            System.out.println("[Log received]: " + args[0].toString() + "; " + args[2].toString() + ": " + args[3].toString());
+            if (args[0].toString().equals("MSG")) {
+                logTransmit = true;
+                logUser = args[2].toString();
+                nowMessage = args[3].toString();
+                logNotice.set(!logNotice.get());
+
+
+            }
+            else if (args[0].toString().equals("FIN")) {
+                logTransmit = false;
+            }
+            else {
+                System.out.println("[onLogReceived]: Unknown status tag: " + args[0].toString());
+            }
+        }
+    };
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -187,6 +212,7 @@ public class Main extends Application {
         mSocket.on("registerAck", onRegister);
         mSocket.on("messageAck", onMessage);
         mSocket.on("messageFromOther", onMessageReceived);
+        mSocket.on("logData" ,onLogReceived);
         mSocket.connect();
 
         /* Scene0: Register */
@@ -471,19 +497,46 @@ public class Main extends Application {
 				    String old_val, String new_val) {
 				    System.out.println(new_val);
 				    if(!nowTalking.equals(new_val)) {
+                        nowTalking = new_val;
 				    	messageLog.setText("");
-					    nowTalking = new_val;
+
+                        // [OFFMSG] naive method: no local caches
+
+                        try {
+                            mSocket.emit("getLog", nowTalking);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+
+					    
 	    			}
 		    	}
     		}
     	);
+
+        logNotice.addListener(
+            new ChangeListener<Boolean>() {
+                public void changed(ObservableValue<? extends Boolean> ov, 
+                    Boolean old_val, Boolean new_val) {
+                    if (logUser.equals(nowTalking)) {
+                        messageLog.appendText(nowTalking+": "+nowMessage+"\n");
+                    }
+                    else {
+                        messageLog.appendText("You: "+nowMessage+"\n");
+                    }
+                }
+            }
+
+
+            );
 
         displayOnScreen.addListener(
             new ChangeListener<Boolean>() {
                 public void changed(ObservableValue<? extends Boolean> ov, 
                     Boolean old_val, Boolean new_val) {
                         /* auto scroll to bottom */
-                        messageLog.appendText(nowTalking+":"+nowMessage+"\n");  
+                        messageLog.appendText(nowTalking+": "+nowMessage+"\n");  
                         //displayOnScreen.set(!displayOnScreen.get());
                     }
             }
@@ -498,11 +551,11 @@ public class Main extends Application {
                 if(event.getCode() == KeyCode.ENTER) {
                     if(!typeMessage.getCharacters().toString().equals("")) {
                         /* offline version */
-                        messageLog.appendText("Owner:"+typeMessage.getCharacters().toString() + "\n"); /* auto scroll to bottom */
+                        messageLog.appendText("You: "+typeMessage.getCharacters().toString() + "\n"); /* auto scroll to bottom */
                         /* TODO: online version */
                         try{
                             mSocket.emit("message", nowTalking, typeMessage.getCharacters().toString());
-			    typeMessage.setText("");
+        			        typeMessage.setText("");
                         }catch (Exception e){
                             e.printStackTrace();
                         }
