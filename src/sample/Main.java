@@ -508,7 +508,7 @@ public class Main extends Application {
                             e.printStackTrace();
                         }
 
-
+                        // [OFFMSG] better method: with local caches
 					    
 	    			}
 		    	}
@@ -623,6 +623,8 @@ public class Main extends Application {
                         } catch(Exception e) {
                             e.printStackTrace();
                         }
+                        if (user != null)
+                            user.username = gotUsername;
 
                         /* Change the scene or alert */
                         if (loginSuccess) {
