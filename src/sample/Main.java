@@ -29,6 +29,8 @@ import javafx.scene.paint.Paint;
 import javafx.geometry.Pos;
 import java.util.regex.*;
 
+import javafx.application.Platform;
+
 
 
 import java.io.*;
@@ -185,7 +187,7 @@ public class Main extends Application {
                 logUser = args[2].toString();
                 nowMessage = args[3].toString();
                 logNotice.set(!logNotice.get());
-
+                
 
             }
             else if (args[0].toString().equals("FIN")) {
@@ -519,12 +521,15 @@ public class Main extends Application {
             new ChangeListener<Boolean>() {
                 public void changed(ObservableValue<? extends Boolean> ov, 
                     Boolean old_val, Boolean new_val) {
-                    if (logUser.equals(nowTalking)) {
-                        messageLog.appendText(nowTalking+": "+nowMessage+"\n");
-                    }
-                    else {
-                        messageLog.appendText("You: "+nowMessage+"\n");
-                    }
+                    Platform.runLater(() -> {
+                        if (logUser.equals(nowTalking)) {
+                            messageLog.appendText(nowTalking+": "+nowMessage+"\n");
+                        }
+                        else {
+                            messageLog.appendText("You: "+nowMessage+"\n");
+                        }
+                    });
+                    
                 }
             }
 

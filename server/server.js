@@ -117,7 +117,7 @@ io.on('connection', function(socket) {
 			//	break;
 			}
 		}
-		if(find)
+		if(find && objectName != client_name[my_client_num])
 			clients[objectIndex].emit('messageFromOther', client_name[my_client_num], data);
 
 		// [MSGLOG] append chat entry to a file
@@ -205,3 +205,10 @@ io.on('connection', function(socket) {
 		process.exit();
 	});*/
 });
+
+
+
+function sleep(msec) {
+    var time = new Date().getTime();
+    while(new Date().getTime() - time < msec);
+}
