@@ -205,7 +205,7 @@ public class Main extends Application {
         Button submit = new Button("Submit");
         Button cancel = new Button("Cancel");
 
-        Label strengthIndicator = new Label("Password Strength Meter"); // fancy feature 1: Password Strength Indicator
+        final Label strengthIndicator = new Label("Password Strength Meter"); // fancy feature 1: Password Strength Indicator
 
 
         cancel.setOnAction(new EventHandler<ActionEvent>() {
