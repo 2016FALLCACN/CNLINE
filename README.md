@@ -6,10 +6,10 @@ A final project from the course "Computer Networks" held in Fall 2016, Departmen
   - [X] Registration (10%)
     - [X] Signup
     - [X] Login with username and password
-  - [ ] Messaging (20%)
+  - [X] Messaging (20%)
     - [X] Online messaging
-    - [ ] Offline messaging
-    - [ ] Historical logs (persistent)
+    - [X] Offline messaging (though naive; in other words, no local cache)
+    - [X] Historical logs (persistent)
   - [ ] File Transfer (20%)
     - [ ] Online send/receive
     - [ ] Multiple file sharing requests

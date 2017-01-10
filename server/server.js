@@ -1,6 +1,7 @@
-var io = require('socket.io').listen(8000);
 var cp = require('child_process');
 var readline = require('readline');
+
+var io = require('socket.io').listen(8000);
 var fs = require('fs');
 
 var clients = []; // socket of connected client
@@ -47,6 +48,7 @@ io.on('connection', function(socket) {
 		/* find valid user */
 		var valid = false;
 
+        userArray = fs.readFileSync('user.cfg').toString().split("\n");
 		for(i in userArray) {
 			if(userArray[i] == id+":"+pwd){
 				client_userid[my_client_num] = i;
@@ -73,6 +75,7 @@ io.on('connection', function(socket) {
 		console.log("[Register]:"+id);
 		console.log("[Register]:"+pwd);
 
+        userArray = fs.readFileSync('user.cfg').toString().split("\n");
 		var valid = true;
 		for(i in userArray) {
 			var arr = userArray[i].toString().split(":");
@@ -89,6 +92,10 @@ io.on('connection', function(socket) {
             } catch (e) {
                 fs.mkdirSync(rootDir+"/"+id);
             }
+            // [MSGLOG] add a directory for message logs
+			if (!fs.existsSync("message_logs/" + id)){
+    			fs.mkdirSync("message_logs/" + id);
+			}
 			io.to(socket.id).emit('registerAck', "success");
 		} else
 			io.to(socket.id).emit('registerAck', "fail");
@@ -110,8 +117,16 @@ io.on('connection', function(socket) {
 			//	break;
 			}
 		}
-		if(find)
+		if(find && objectName != client_name[my_client_num])
 			clients[objectIndex].emit('messageFromOther', client_name[my_client_num], data);
+
+		// [MSGLOG] append chat entry to a file
+			var logfs = require('fs');
+			var folder_name = (client_name[my_client_num] < objectName)? client_name[my_client_num] : objectName;
+			var file_name = ( (client_name[my_client_num] >= objectName)? client_name[my_client_num] : objectName);
+			console.log("Writing file on : " + "message_logs/" + folder_name + "/" + file_name + ".log");
+			fs.appendFile("message_logs/" + folder_name + "/" + file_name + ".log", "[" + client_name[my_client_num] + "]" + data + "\n" , 'utf8', function (err) {
+  				if (err) return console.log(err);});
 		/* write to file */
 		// var first, second;
 		// fs.appendFile("HistoricalMsg/"+first+second+".cfg", data+"\n", function (err){});
@@ -120,11 +135,36 @@ io.on('connection', function(socket) {
 
 	});
 
+	// [MSGLOG]
+	socket.on('getLog', function(objectName) {
+		console.log("[Log request]: ("  + client_name[my_client_num] + ", " + objectName + ")" );
+		var folder_name = (client_name[my_client_num] < objectName)? client_name[my_client_num] : objectName;
+		var file_name = ( (client_name[my_client_num] >= objectName)? client_name[my_client_num] : objectName);
+		var path = "message_logs/" + folder_name + "/" + file_name + ".log";
+
+
+		var count = 0;
+		if (fs.existsSync(path)) {
+			var logArray = fs.readFileSync(path).toString().split("\n");
+			for (i in logArray) {
+				if (logArray[i].length > 0) {
+					var entryUser = logArray[i].slice(1, logArray[i].indexOf(']'));
+					var entryMsg = logArray[i].slice(logArray[i].indexOf(']') + 1);
+					clients[my_client_num].emit('logData', "MSG", count.toString(), entryUser, entryMsg);
+					count++;
+				}
+			}
+		}
+		clients[my_client_num].emit('logData', "FIN", count.toString(), " ", " ");
+		
+	});
+
 	socket.on('fileUpload',function(objectName , filename, data){
 		console.log("[File to]: "+objectName);
 		console.log("[File Name]: "+filename);
 
 		/* send to the other */
+        userArray = fs.readFileSync('user.cfg').toString().split("\n");
 		var objectIndex;
 		var find = false;
 		for(i in userArray) {
@@ -143,6 +183,7 @@ io.on('connection', function(socket) {
 	});
 	
     socket.on('fileDownload',function(usrName, filename){
+        userArray = fs.readFileSync('user.cfg').toString().split("\n");
 		for(i in userArray) {
             var validUser = userArray[i].toString().split(":");
 			if(validUser[0] == usrName){
@@ -164,3 +205,10 @@ io.on('connection', function(socket) {
 		process.exit();
 	});*/
 });
+
+
+
+function sleep(msec) {
+    var time = new Date().getTime();
+    while(new Date().getTime() - time < msec);
+}
