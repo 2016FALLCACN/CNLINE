@@ -525,11 +525,14 @@ public class Main extends Application {
             new ChangeListener<Boolean>() {
                 public void changed(ObservableValue<? extends Boolean> ov, 
                     Boolean old_val, Boolean new_val) {
+                    System.out.println("nowTalking = "+ nowTalking);
+                    System.out.println("logMessageSender.peek() = "+ logMessageSender.peek());
                     Platform.runLater(() -> {
-                        if (logMessageSender.peek() != null && logMessage.peek() != null && logUser.equals(logMessageSender.peek()) && !logUser.equals(user.username)) {
+                        if (logMessageSender.peek() != null && logMessage.peek() != null && nowTalking.equals(logMessageSender.peek()) && !nowTalking.equals(user.username)) {
                             messageLog.appendText(logMessageSender.poll()+": "+logMessage.poll()+"\n");
                         }
                         else {
+                            logMessageSender.poll();
                             messageLog.appendText("You: "+logMessage.poll()+"\n");
                         }
                     });
