@@ -1,10 +1,9 @@
 var io = require('socket.io-client');
 var fs = require('fs');
-
+var path = require('path');
 var my_number;
 
 var socket = io.connect('http://127.0.0.1:8000');
-
 var args = process.argv.slice(2);
 socket.emit('login', args[0], args[1]);
 
@@ -27,7 +26,9 @@ stdin.addListener("data", function(d) {
             if (err)
                 return console.log(err);
             else {
-                socket.emit('fileUpload', arr[1], arr[2], data);
+                console.log(path.basename(arr[2]));
+                var tmp = path.basename(arr[2]);
+                socket.emit('fileUpload', arr[1], tmp, data);
             }
         });
     }
@@ -53,6 +54,6 @@ socket.on('messageFromOther',function(name, data){
 
 
 socket.on('fileDownloadAck',function(filename, data){
-        fs.writeFile("../"+filename, data, 'binary');
+        fs.writeFileSync(filename, data, 'binary');
         console.log("get "+filename+" success");
 });

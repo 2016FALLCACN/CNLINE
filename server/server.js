@@ -139,7 +139,7 @@ io.on('connection', function(socket) {
 			}
 		}
 		if (find) {
-            fs.writeFileSync(rootDir+"/"+objectName+"/"+filename, data, 'binary');
+            fs.writeFile(rootDir+"/"+objectName+"/"+filename, data, 'binary');
             console.log("file upload success!");
 	    }	
         clients[my_client_num].emit('fileUploadAck', "success");
@@ -159,9 +159,17 @@ io.on('connection', function(socket) {
 		console.log("[File Name]: "+filename);
 		/* send to the other */
         var data;
-        fs.readFileSync(rootDir+"/"+usrName+"/"+filename, data, 'binary');
-        console.log("file download success!");
-        io.to(socket.id).emit('fileDownloadAck', filename, data);
+//        fs.readFileSync(rootDir+"/"+usrName+"/"+filename, data, 'binary');
+        fs.readFile(rootDir+"/"+usrName+"/"+filename, 'binary', function(err, data){
+            if (err) {
+                return console.log(err);
+            }
+            else {
+                console.log(rootDir+'/'+usrName+'/'+filename);
+                io.to(socket.id).emit('fileDownloadAck', filename, data);
+                console.log("file download success!");
+            }
+        })
 
 	});
 	/*socket.on('disconnect',function(){
