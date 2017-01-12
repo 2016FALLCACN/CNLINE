@@ -231,7 +231,20 @@ io.on('connection', function(socket) {
 
 	});
 
-    socket.on('listDownloadFiles', );
+    socket.on('listDownloadFiles', function(ownerName, senderName) {
+        var listDir = rootDir+'/'+ownerName+'/'+senderName;
+        var fileArr = []
+        fs.readdir(listDir, function(err, files) {
+            files.forEach(file => {
+                fileArr.push(file);
+            });
+            for (i in fileArr) {
+                console.log(fileArr[i]);
+            }
+        })
+        io.to(socket.id).emit('listDownloadOptions', fileArr);
+    });
+
 	/*socket.on('disconnect',function(){
 		io.emit('all_disconnect');
 		process.exit();
