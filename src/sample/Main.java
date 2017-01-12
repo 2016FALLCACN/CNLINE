@@ -13,6 +13,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -20,7 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.stage.*;
 
 // for fancy features
 import javafx.scene.layout.Background;
@@ -52,7 +54,7 @@ public class Main extends Application {
     /* Connection Variables */
     private Socket mSocket;
     private boolean loginSuccess = false;
-    private boolean registerSuccess = false;
+    private int registerSuccess = 0;
     private boolean messageSuccess = false;
     private boolean logTransmit = false;
 
@@ -156,7 +158,9 @@ public class Main extends Application {
         @Override
         public void call(Object... args) {
             if(args[0].toString().equals("success")) {
-                registerSuccess = true;
+                registerSuccess = 1;
+            } else if(args[0].toString().equals("fail")){
+                registerSuccess = -1;
             }
         }
     };
@@ -203,6 +207,18 @@ public class Main extends Application {
         }
     };
 
+    private Emitter.Listener onFileUploadStatus = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            if(args[0].toString().equals("success")){
+                System.out.println("[FILE] Upload Success");
+            } else if (args[0].toString().equals("fail")){
+                System.out.println("[FILE] Upload Fail");
+            } else
+                System.out.println("[FILE] Unknown Status");
+        }
+    };
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -219,6 +235,7 @@ public class Main extends Application {
         mSocket.on("messageAck", onMessage);
         mSocket.on("messageFromOther", onMessageReceived);
         mSocket.on("logData" ,onLogReceived);
+        mSocket.on("uploadStatus", onFileUploadStatus);
         mSocket.connect();
 
         /* Scene0: Register */
@@ -261,9 +278,9 @@ public class Main extends Application {
 
                     if (gotUsername.equals("")) {
                         AlertBox.display("Attention", "You haven't enter your name!");
-                    } else if (repeated(gotUsername)) {
+                    } /*else if (repeated(gotUsername)) {
                         AlertBox.display("Attention", "This name has been registered!");
-                    } else if (gotPassword.length() < Constants.PWDMINLEN) {
+                    }*/ else if (gotPassword.length() < Constants.PWDMINLEN) {
                         AlertBox.display("Attention", "This password is too short!");
                     } else if (gotPassword.length() > Constants.PWDMAXLEN) {
                         AlertBox.display("Attention", "This password is too long!");
@@ -277,13 +294,19 @@ public class Main extends Application {
                         } catch (Exception e){
                             e.printStackTrace();
                         }
-                        if(registerSuccess) {
-                            AlertBox.display("Information", "Success!");
-                            window.setScene(scene1);
-                            registerSuccess = false;
-                        } else {
-                        /* TODO: disconnect or repeated name */
-                            AlertBox.display("Attention", "This name has been registered!");
+                        switch(registerSuccess){
+                            case 1:
+                                AlertBox.display("Information", "Success!");
+                                window.setScene(scene1);
+                                registerSuccess = 0;
+                                break;
+                            case 0:
+                                AlertBox.display("Attention", "The connection is unavailable now");
+                                break;
+                            case -1:
+                                AlertBox.display("Attention", "This name has been registered!");
+                                registerSuccess = 0;
+                                break;
                         }
                     }
                     typeUsername.setText("");
@@ -310,7 +333,6 @@ public class Main extends Application {
                 //System.out.printf("You typed something: %s\n", gotPassword); 
                 //System.out.printf("Your score: %d\n", strengthScore); 
                 meterOutput(strengthScore);
-
             }
             private void meterOutput(int score) {
                 int rate = 0;
@@ -489,6 +511,7 @@ public class Main extends Application {
 
         final VBox messageArea = new VBox(20); /* TODO: maximize the size */
         HBox messageInput = new HBox(10);
+        HBox fileTransfer = new HBox(10);
         final TextArea messageLog = new TextArea();
         messageLog.setEditable(false);
 	
@@ -497,66 +520,85 @@ public class Main extends Application {
         final ArrayList<String> friend = new ArrayList<String>();
         names.addAll(friend);
         contact.setItems(names);
-	    contact.getSelectionModel().selectedItemProperty().addListener(
-		    new ChangeListener<String>() {
-			    public void changed(ObservableValue<? extends String> ov,
-				    String old_val, String new_val) {
-				    System.out.println(new_val);
-				    if(!nowTalking.equals(new_val)) {
-                        nowTalking = new_val;
-				    	messageLog.setText("");
+	    contact.getSelectionModel().selectedItemProperty().addListener( new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> ov,
+                String old_val, String new_val) {
+                System.out.println(new_val);
+                if(!nowTalking.equals(new_val)) {
+                    nowTalking = new_val;
+                    messageLog.setText("");
+                    // [OFFMSG] naive method: no local caches
 
-                        // [OFFMSG] naive method: no local caches
+                    try {
+                        mSocket.emit("getLog", nowTalking);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    // [OFFMSG] better method: with local caches
 
-                        try {
-                            mSocket.emit("getLog", nowTalking);
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-
-                        // [OFFMSG] better method: with local caches
-					    
-	    			}
-		    	}
-    		}
-    	);
-
-        logNotice.addListener(
-            new ChangeListener<Boolean>() {
-                public void changed(ObservableValue<? extends Boolean> ov, 
-                    Boolean old_val, Boolean new_val) {
-                    System.out.println("nowTalking = "+ nowTalking);
-                    System.out.println("logMessageSender.peek() = "+ logMessageSender.peek());
-                    Platform.runLater(() -> {
-                        if (logMessageSender.peek() != null && logMessage.peek() != null && nowTalking.equals(logMessageSender.peek()) && !nowTalking.equals(user.username)) {
-                            messageLog.appendText(logMessageSender.poll()+": "+logMessage.poll()+"\n");
-                        }
-                        else {
-                            logMessageSender.poll();
-                            messageLog.appendText("You: "+logMessage.poll()+"\n");
-                        }
-                    });
-                    
                 }
             }
+        });
 
-
-            );
-
-        displayOnScreen.addListener(
-            new ChangeListener<Boolean>() {
-                public void changed(ObservableValue<? extends Boolean> ov, 
-                    Boolean old_val, Boolean new_val) {
-                        /* auto scroll to bottom */
-                        messageLog.appendText(nowTalking+": "+nowMessage+"\n");  
-                        //displayOnScreen.set(!displayOnScreen.get());
+        logNotice.addListener( new ChangeListener<Boolean>() {
+            public void changed(ObservableValue<? extends Boolean> ov,
+                Boolean old_val, Boolean new_val) {
+                System.out.println("nowTalking = "+ nowTalking);
+                System.out.println("logMessageSender.peek() = "+ logMessageSender.peek());
+                Platform.runLater(() -> {
+                    if (logMessageSender.peek() != null && logMessage.peek() != null && nowTalking.equals(logMessageSender.peek()) && !nowTalking.equals(user.username)) {
+                        messageLog.appendText(logMessageSender.poll()+": "+logMessage.poll()+"\n");
                     }
+                    else {
+                        logMessageSender.poll();
+                        messageLog.appendText("You: "+logMessage.poll()+"\n");
+                    }
+                });
             }
-        );
+        });
+
+        displayOnScreen.addListener( new ChangeListener<Boolean>() {
+            public void changed(ObservableValue<? extends Boolean> ov,
+                Boolean old_val, Boolean new_val) {
+                /* auto scroll to bottom */
+                messageLog.appendText(nowTalking+": "+nowMessage+"\n");
+                //displayOnScreen.set(!displayOnScreen.get());
+            }
+        });
+
         final TextField typeMessage = new TextField();
-        // Button sendFile = new Button("file"); /* TODO: window showup */
+
+        /* File Transfer */
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        Button uploadFile = new Button("Upload");
+        uploadFile.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                File file = fileChooser.showOpenDialog(null);
+                fileChooser.setTitle("Select files");
+                fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+                if(file != null) {
+                    System.out.println(file.getName());
+                    try {
+                        mSocket.emit("fileUpload", nowTalking, file.getName(), file);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }); /* TODO: window showup */
+
+        Button downloadFile = new Button("Download");
+        downloadFile.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+            }
+        }); /* TODO: window showup */
+
         Button sendMessage = new Button("send");
-            /* TODO: auto-newline */
+            /* TODO: feature: auto-newline */
         typeMessage.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event){
@@ -592,8 +634,9 @@ public class Main extends Application {
         typeMessage.setAlignment(Pos.CENTER_LEFT);
         sendMessage.setAlignment(Pos.CENTER_RIGHT);
         messageInput.getChildren().addAll(typeMessage, sendMessage);
+        fileTransfer.getChildren().addAll(uploadFile, downloadFile);
         messageInput.setAlignment(Pos.BOTTOM_LEFT);
-        messageArea.getChildren().addAll(messageLog, messageInput);
+        messageArea.getChildren().addAll(messageLog, fileTransfer, messageInput);
 
 
         mainPage.add(contact, 0, 0);
