@@ -25,4 +25,13 @@ public class User {
         	}
         });
     }
+
+    public Friend getFriend(String ask){
+        for (Friend friend: friends) {
+            if(friend.getName().equals(ask)){
+                return friend;
+            }
+        }
+        return null;
+    }
 }
