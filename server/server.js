@@ -169,7 +169,7 @@ io.on('connection', function(socket) {
 		var find = false;
 		for(i in userArray) {
             var validUser = userArray[i].toString().split(":");
-			if(validUser[0] === objectName){
+			if(validUser[0] === objectName && objectName != ""){
 				find = true;
 				console.log("FIND YOU!");
 			}
@@ -233,6 +233,11 @@ io.on('connection', function(socket) {
 
     socket.on('listDownloadFiles', function(receiverName, senderName) {
         var listDir = rootDir+'/'+receiverName+'/'+senderName;
+        try {
+            fs.accessSync(listDir);
+        } catch (e) {
+            console.log("no such directory");
+        }
         fs.readdir(listDir, function(err, files) {
             for (i in files) {
                 console.log(files[i]);
