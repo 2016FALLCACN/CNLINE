@@ -175,10 +175,23 @@ io.on('connection', function(socket) {
 			}
 		}
 		if (find) {
-            fs.writeFileSync(rootDir+"/"+objectName+"/"+filename, data, 'binary');
-            console.log("file upload success!");
-	    }	
-        clients[my_client_num].emit('fileUploadAck', "success");
+            fs.stat(rootDir+'/'+objectName, function(err, stats) {
+                if (err && err.errno === 34) {
+                    console.log("no such directory");
+                    io.to(socket.id).emit('uploadStatus', "fail");
+                }
+                else {
+                    fs.writeFile(rootDir+"/"+objectName+"/"+filename, data, 'binary');
+                    console.log("file upload success!");
+                    clients[my_client_num].emit('fileUploadAck', "success");
+                    io.to(socket.id).emit('uploadStatus', "success");
+                }
+            });
+	    }
+        else {
+            console.log("no such user");
+            io.to(socket.id).emit('uploadStatus', "fail");
+        }	
 
 	});
 	
@@ -195,9 +208,18 @@ io.on('connection', function(socket) {
 		console.log("[File Name]: "+filename);
 		/* send to the other */
         var data;
-        fs.readFileSync(rootDir+"/"+usrName+"/"+filename, data, 'binary');
-        console.log("file download success!");
-        io.to(socket.id).emit('fileDownloadAck', filename, data);
+//        fs.readFileSync(rootDir+"/"+usrName+"/"+filename, data, 'binary');
+        fs.readFile(rootDir+"/"+usrName+"/"+filename, 'binary', function(err, data){
+            if (err) {
+                console.log("cannot open the file:"+filename);
+                io.to(socket.id).emit('fileDownloadAck', "", "");
+            }
+            else {
+                console.log(rootDir+'/'+usrName+'/'+filename);
+                io.to(socket.id).emit('fileDownloadAck', filename, data);
+                console.log("file download success!");
+            }
+        })
 
 	});
 	/*socket.on('disconnect',function(){

@@ -1,10 +1,9 @@
 var io = require('socket.io-client');
 var fs = require('fs');
-
+var path = require('path');
 var my_number;
 
 var socket = io.connect('http://127.0.0.1:8000');
-
 var args = process.argv.slice(2);
 socket.emit('login', args[0], args[1]);
 
@@ -23,19 +22,30 @@ stdin.addListener("data", function(d) {
     var arr = data.toString().split(":");
     var buff;
     if (arr[0] === "put") {
-        fs.readFile(arr[2], 'binary', function(err, data) {
-            if (err)
-                return console.log(err);
-            else {
-                socket.emit('fileUpload', arr[1], arr[2], data);
-            }
-        });
+        if (arr[1] === undefined || arr[2] === undefined) {
+            console.log("incorrect format");
+        }
+        else {
+            fs.readFile(arr[2], 'binary', function(err, data) {
+                if (err) {
+                    console.log("cannot open the file:"+arr[2]);
+                }
+                else {
+                    console.log(path.basename(arr[2]));
+                    var tmp = path.basename(arr[2]);
+                    socket.emit('fileUpload', arr[1], tmp, data);
+                }
+            });
+        }
     }
     else if (arr[0] === "get") {
         socket.emit('fileDownload', usrName, arr[1]);
     }
+    else if (arr[0] === "msg"){
+        socket.emit('message', arr[1], arr[2]);
+    }
     else {
-        socket.emit('message', arr[0], arr[1]);
+        console.log("invalid command");
     }
 });
 
@@ -53,6 +63,20 @@ socket.on('messageFromOther',function(name, data){
 
 
 socket.on('fileDownloadAck',function(filename, data){
-        fs.writeFile("../"+filename, data, 'binary');
-        console.log("get "+filename+" success");
+        if (filename === "") {
+            console.log("cannot fetch the file");
+        }
+        else {
+            fs.writeFile(filename, data, 'binary');
+            console.log("get "+filename+" success");
+        }
+});
+
+socket.on('uploadStatus', function(stat) {
+    if (stat === "success") {
+        console.log("upload success");
+    }
+    else {
+        console.log("upload fail");
+    }
 });
