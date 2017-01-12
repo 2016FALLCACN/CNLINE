@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Friend {
     private String name = "";
     private ArrayList<String> messages = new ArrayList<String>();
+    private ArrayList<String> files = new ArrayList<String>();
 
     public Friend(String name){
         this.name = name;
@@ -16,8 +17,19 @@ public class Friend {
     public String getName() {
         return name;
     }
+    public ArrayList<String> getFiles() {
+        return files;
+    }
 
     public void addMessage(String msg){
         messages.add(msg);
+    }
+
+    public void addFile(String file){ files.add(file); }
+
+    public void addAllFile(ArrayList<String> manyfile){
+        for(int i = 0; i < manyfile.size(); i++){
+            this.files.add(manyfile.get(i));
+        }
     }
 }
