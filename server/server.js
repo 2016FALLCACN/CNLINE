@@ -169,11 +169,12 @@ io.on('connection', function(socket) {
 		var find = false;
 		for(i in userArray) {
             var validUser = userArray[i].toString().split(":");
-			if(validUser[0] == objectName){
+			if(validUser[0] === objectName){
 				find = true;
 				console.log("FIND YOU!");
 			}
 		}
+        
 		if (find) {
             fs.stat(rootDir+'/'+objectName, function(err, stats) {
                 if (err && err.errno === 34) {
@@ -181,9 +182,16 @@ io.on('connection', function(socket) {
                     io.to(socket.id).emit('uploadStatus', "fail");
                 }
                 else {
-                    fs.writeFile(rootDir+"/"+objectName+"/"+filename, data, 'binary');
+                    console.log(client_name[my_client_num]);
+                    var writeDestDir = rootDir+'/'+objectName+'/'+client_name[my_client_num];
+                    try {
+                        fs.accessSync(writeDestDir);
+                    } catch (e) {
+                        fs.mkdirSync(writeDestDir);
+                    }
+                    fs.writeFile(writeDestDir+'/'+filename, data, 'binary');
                     console.log("file upload success!");
-                    clients[my_client_num].emit('fileUploadAck', "success");
+                    //clients[my_client_num].emit('fileUploadAck', "success");
                     io.to(socket.id).emit('uploadStatus', "success");
                 }
             });
@@ -195,33 +203,44 @@ io.on('connection', function(socket) {
 
 	});
 	
-    socket.on('fileDownload',function(usrName, filename){
+    socket.on('fileDownload',function(receiverName, senderName, filename){
         userArray = fs.readFileSync('user.cfg').toString().split("\n");
 		for(i in userArray) {
             var validUser = userArray[i].toString().split(":");
-			if(validUser[0] == usrName){
+			if(validUser[0] === receiverName){
 				find = true;
 				console.log("FIND YOU!");
 			}
 		}
-		console.log("[File request]: "+usrName);
+		console.log("[File request]: "+receiverName);
 		console.log("[File Name]: "+filename);
 		/* send to the other */
         var data;
-//        fs.readFileSync(rootDir+"/"+usrName+"/"+filename, data, 'binary');
-        fs.readFile(rootDir+"/"+usrName+"/"+filename, 'binary', function(err, data){
+//        fs.readFileSync(rootDir+"/"+receiverName+"/"+filename, data, 'binary');
+        fs.readFile(rootDir+"/"+receiverName+"/"+senderName+"/"+filename, 'binary', function(err, data){
             if (err) {
                 console.log("cannot open the file:"+filename);
                 io.to(socket.id).emit('fileDownloadAck', "", "");
             }
             else {
-                console.log(rootDir+'/'+usrName+'/'+filename);
+                console.log(rootDir+'/'+receiverName+'/'+filename);
                 io.to(socket.id).emit('fileDownloadAck', filename, data);
                 console.log("file download success!");
             }
         })
 
 	});
+
+    socket.on('listDownloadFiles', function(receiverName, senderName) {
+        var listDir = rootDir+'/'+receiverName+'/'+senderName;
+        fs.readdir(listDir, function(err, files) {
+            for (i in files) {
+                console.log(files[i]);
+            }
+            io.to(socket.id).emit('listDownloadOptions', files);
+        })
+    });
+
 	/*socket.on('disconnect',function(){
 		io.emit('all_disconnect');
 		process.exit();
