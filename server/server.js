@@ -231,18 +231,14 @@ io.on('connection', function(socket) {
 
 	});
 
-    socket.on('listDownloadFiles', function(ownerName, senderName) {
-        var listDir = rootDir+'/'+ownerName+'/'+senderName;
-        var fileArr = []
+    socket.on('listDownloadFiles', function(receiverName, senderName) {
+        var listDir = rootDir+'/'+receiverName+'/'+senderName;
         fs.readdir(listDir, function(err, files) {
-            files.forEach(file => {
-                fileArr.push(file);
-            });
-            for (i in fileArr) {
-                console.log(fileArr[i]);
+            for (i in files) {
+                console.log(files[i]);
             }
+            io.to(socket.id).emit('listDownloadOptions', files);
         })
-        io.to(socket.id).emit('listDownloadOptions', fileArr);
     });
 
 	/*socket.on('disconnect',function(){
