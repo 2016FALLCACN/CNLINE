@@ -169,11 +169,12 @@ io.on('connection', function(socket) {
 		var find = false;
 		for(i in userArray) {
             var validUser = userArray[i].toString().split(":");
-			if(validUser[0] == objectName){
+			if(validUser[0] === objectName){
 				find = true;
 				console.log("FIND YOU!");
 			}
 		}
+        
 		if (find) {
             fs.stat(rootDir+'/'+objectName, function(err, stats) {
                 if (err && err.errno === 34) {
@@ -181,9 +182,16 @@ io.on('connection', function(socket) {
                     io.to(socket.id).emit('uploadStatus', "fail");
                 }
                 else {
-                    fs.writeFile(rootDir+"/"+objectName+"/"+filename, data, 'binary');
+                    console.log(client_name[my_client_num]);
+                    var writeDestDir = rootDir+'/'+objectName+'/'+client_name[my_client_num];
+                    try {
+                        fs.accessSync(writeDestDir);
+                    } catch (e) {
+                        fs.mkdirSync(writeDestDir);
+                    }
+                    fs.writeFile(writeDestDir+'/'+filename, data, 'binary');
                     console.log("file upload success!");
-                    clients[my_client_num].emit('fileUploadAck', "success");
+                    //clients[my_client_num].emit('fileUploadAck', "success");
                     io.to(socket.id).emit('uploadStatus', "success");
                 }
             });
@@ -195,11 +203,11 @@ io.on('connection', function(socket) {
 
 	});
 	
-    socket.on('fileDownload',function(usrName, filename){
+    socket.on('fileDownload',function(usrName, senderName, filename){
         userArray = fs.readFileSync('user.cfg').toString().split("\n");
 		for(i in userArray) {
             var validUser = userArray[i].toString().split(":");
-			if(validUser[0] == usrName){
+			if(validUser[0] === usrName){
 				find = true;
 				console.log("FIND YOU!");
 			}
@@ -209,7 +217,7 @@ io.on('connection', function(socket) {
 		/* send to the other */
         var data;
 //        fs.readFileSync(rootDir+"/"+usrName+"/"+filename, data, 'binary');
-        fs.readFile(rootDir+"/"+usrName+"/"+filename, 'binary', function(err, data){
+        fs.readFile(rootDir+"/"+usrName+"/"+senderName+"/"+filename, 'binary', function(err, data){
             if (err) {
                 console.log("cannot open the file:"+filename);
                 io.to(socket.id).emit('fileDownloadAck', "", "");
@@ -222,6 +230,8 @@ io.on('connection', function(socket) {
         })
 
 	});
+
+    socket.on('listDownloadFiles', );
 	/*socket.on('disconnect',function(){
 		io.emit('all_disconnect');
 		process.exit();

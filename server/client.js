@@ -39,7 +39,13 @@ stdin.addListener("data", function(d) {
         }
     }
     else if (arr[0] === "get") {
-        socket.emit('fileDownload', usrName, arr[1]);
+        if (arr[1] === undefined || arr[2] === undefined) {
+            console.log("incorrect format");
+        }
+        else {
+            /*arr[1] = senderName, arr[2] = fileName*/
+            socket.emit('fileDownload', usrName, arr[1], arr[2]);
+        }
     }
     else if (arr[0] === "msg"){
         socket.emit('message', arr[1], arr[2]);
