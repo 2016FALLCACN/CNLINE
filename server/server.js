@@ -223,7 +223,7 @@ io.on('connection', function(socket) {
                 io.to(socket.id).emit('fileDownloadAck', "", "");
             }
             else {
-                console.log(rootDir+'/'+receiverName+'/'+filename);
+                //console.log(rootDir+'/'+receiverName+'/'+filename);
                 io.to(socket.id).emit('fileDownloadAck', filename, data);
                 console.log("file download success!");
             }

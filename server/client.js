@@ -50,6 +50,15 @@ stdin.addListener("data", function(d) {
     else if (arr[0] === "msg"){
         socket.emit('message', arr[1], arr[2]);
     }
+    else if (arr[0] === "list") {
+        if (arr[1] === undefined) {
+            console.log("incorrect format");
+        }
+        else {
+            /*arr[1] = senderName, arr[2] = fileName*/
+            socket.emit('listDownloadFiles', usrName, arr[1]);
+        }
+    }
     else {
         console.log("invalid command");
     }
@@ -86,3 +95,9 @@ socket.on('uploadStatus', function(stat) {
         console.log("upload fail");
     }
 });
+
+socket.on('listDownloadOptions', function(fileArr) {
+    for (i in fileArr) {
+        console.log(fileArr[i]);
+    }
+})
