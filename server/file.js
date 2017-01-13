@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var args = process.argv.slice(2);
 
-var socket = io.connect('http://127.0.0.1:8000');
+var socket = io.connect('http://140.112.30.34:60000');
 
 /*args[0] = mode[down|up], args[1] = sender/receiver name, args[2] = sender/receiver name, args[3] = file name*/
 console.log(args[0]+' '+args[1]+' '+args[2]+' '+args[3]);
@@ -11,7 +11,6 @@ console.log(args[0]+' '+args[1]+' '+args[2]+' '+args[3]);
 /*args[0] = mode:up, args[1] = sender name, args[2] = receiver name, args[3] = file name*/
 if (args[0] === "up") {
     fs.readFile(args[3], 'binary', function(err, data) {
-        console.log("enter");
         if (err) {
             console.log("cannot open file:"+args[3]);
         }

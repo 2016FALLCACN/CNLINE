@@ -165,7 +165,6 @@ io.on('connection', function(socket) {
 
 		/* send to the other */
         userArray = fs.readFileSync('user.cfg').toString().split("\n");
-		var objectIndex;
 		var find = false;
 		for(i in userArray) {
             var validUser = userArray[i].toString().split(":");
