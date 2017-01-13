@@ -2,12 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server/uploads/Billy.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server/uploads/gcc/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/engine.io-client-0.2.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/socket.io-client-0.1.0.jar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/ChatApplication.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/ChatApplication.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Friend.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Friend.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$1.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$10.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$11.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$11.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$12.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$12.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$13.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$13.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$14.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$14.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$15.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$15.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$16$1$1.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$16$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$16$1.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$16$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$16.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$16.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$17.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$17.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$18.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$18.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$19.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$19.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$2.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$3.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$4.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$5.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$6.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$7.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$8.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$9.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$UserConfig.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$UserConfig.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNLINE.iml" afterPath="$PROJECT_DIR$/CNLINE.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/ChatApplication.java" afterPath="$PROJECT_DIR$/src/sample/ChatApplication.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Friend.java" afterPath="$PROJECT_DIR$/src/sample/Friend.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/User.java" afterPath="$PROJECT_DIR$/src/sample/User.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,88 +92,63 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Constants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="55" lean-forward="false" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="261" column="55" lean-forward="true" selection-start-line="261" selection-start-column="55" selection-end-line="261" selection-end-column="55" />
+            <state relative-caret-position="101">
+              <caret line="270" column="32" lean-forward="true" selection-start-line="270" selection-start-column="32" selection-end-line="270" selection-end-column="32" />
               <folding>
-                <element signature="e#1932#1940#0" expanded="true" />
-                <element signature="e#1997#2005#0" expanded="true" />
-                <element signature="e#2069#2078#0" expanded="true" />
-                <element signature="e#2139#2148#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2663#2671#0" expanded="true" />
+                <element signature="e#2728#2736#0" expanded="true" />
+                <element signature="e#2800#2809#0" expanded="true" />
+                <element signature="e#2870#2879#0" expanded="true" />
                 <element signature="class#UserConfig#0;class#Main#0" expanded="false" />
                 <element signature="method#repeated#0;class#Main#0" expanded="false" />
                 <element signature="method#login#0;class#Main#0" expanded="false" />
+                <element signature="method#register#0;class#Main#0" expanded="false" />
                 <element signature="method#jsArrayParse#0;class#Main#0" expanded="false" />
-                <element signature="e#3924#3932#0" expanded="true" />
-                <element signature="class#4622:4921" expanded="false" />
-                <element signature="class#4969:5174" expanded="false" />
-                <element signature="class#5230:5598" expanded="false" />
-                <element signature="class#5698:6446" expanded="false" />
-                <element signature="class#6503:6912" expanded="false" />
-                <element signature="class#6969:7341" expanded="false" />
-                <element signature="class#10867:13400" expanded="false" />
-                <element signature="class#13653:19484" expanded="false" />
-                <element signature="e#22656#22664#0" expanded="true" />
-                <element signature="e#22796#22804#0" expanded="true" />
-                <element signature="class#22944:23637" expanded="false" />
-                <element signature="class#23676:24538" expanded="false" />
-                <element signature="class#24583:24936" expanded="false" />
-                <element signature="class#25214:26377" expanded="false" />
-                <element signature="e#27054#28316#0" expanded="true" />
-                <element signature="e#27439#27447#0" expanded="true" />
-                <element signature="e#28315#28316#0" expanded="true" />
-                <element signature="class#29246:30064" expanded="false" />
+                <element signature="e#4655#4663#0" expanded="true" />
+                <element signature="class#4989:5304" expanded="false" />
+                <element signature="class#5353:5652" expanded="false" />
+                <element signature="class#5700:5905" expanded="false" />
+                <element signature="class#5961:6329" expanded="false" />
+                <element signature="class#6429:7177" expanded="false" />
+                <element signature="class#7234:7643" expanded="false" />
+                <element signature="class#7700:8235" expanded="false" />
+                <element signature="class#11451:11926" expanded="false" />
+                <element signature="class#11970:14503" expanded="false" />
+                <element signature="class#14756:20587" expanded="false" />
+                <element signature="e#23759#23767#0" expanded="true" />
+                <element signature="e#23899#23907#0" expanded="true" />
+                <element signature="class#24047:24740" expanded="false" />
+                <element signature="class#24779:25641" expanded="false" />
+                <element signature="class#25686:26039" expanded="false" />
+                <element signature="e#28190#29639#0" expanded="true" />
+                <element signature="e#28645#28653#0" expanded="true" />
+                <element signature="e#29638#29639#0" expanded="true" />
+                <element signature="class#30981:31799" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AlertBox.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/AlertBox.java">
+      <file leaf-file-name="Emitter.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ideaLibSources/engine.io-client-0.7.0-sources.jar!/io/socket/emitter/Emitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="25" column="8" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="26" selection-end-column="32" />
-              <folding>
-                <element signature="e#1022#1023#0" expanded="true" />
-                <element signature="e#1068#1069#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="34" column="20" lean-forward="false" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
+            <state relative-caret-position="780">
+              <caret line="147" column="37" lean-forward="false" selection-start-line="147" selection-start-column="37" selection-end-line="147" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Friend.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Friend.java">
+      <file leaf-file-name="Socket.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ideaLibSources/socket.io-client-0.6.2-sources.jar!/io/socket/client/Socket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-              <folding>
-                <element signature="e#198#206#0" expanded="true" />
-                <element signature="e#261#269#0" expanded="true" />
-                <element signature="e#304#305#0" expanded="true" />
-                <element signature="e#336#337#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-1935">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -185,7 +186,10 @@
       <find>image</find>
       <find>user.</find>
       <find>contact</find>
+      <find>getProperty</find>
+      <find>download</find>
       <find>window</find>
+      <find>emit</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -208,12 +212,12 @@
         <option value="$PROJECT_DIR$/src/sample/sample.fxml" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/sample/Constant.java" />
-        <option value="$PROJECT_DIR$/src/sample/ChatApplication.java" />
         <option value="$PROJECT_DIR$/user.cfg" />
         <option value="$PROJECT_DIR$/src/sample/Constants.java" />
         <option value="$PROJECT_DIR$/src/sample/ImageButton.java" />
-        <option value="$PROJECT_DIR$/src/sample/Friend.java" />
         <option value="$PROJECT_DIR$/src/sample/User.java" />
+        <option value="$PROJECT_DIR$/src/sample/Friend.java" />
+        <option value="$PROJECT_DIR$/src/sample/ChatApplication.java" />
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
       </list>
     </option>
@@ -275,21 +279,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CNLINE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CNLINE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -299,6 +288,60 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="CNLINE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CNLINE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CNLINE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socket.io-client-0.6.2.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CNLINE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CNLINE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socket.io-client-0.6.2.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socket" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CNLINE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CNLINE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socket.io-client-0.6.2.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socket" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -322,6 +365,21 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CNLINE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CNLINE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -339,18 +397,19 @@
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="cnline" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/socket.io-client-0.6.0.jar!/com/github/nkzawa/socketio" />
       <recent name="$PROJECT_DIR$/src/sample" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="sample" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/sample" />
     </key>
   </component>
@@ -609,7 +668,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -626,7 +685,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1898223" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19224556" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -664,353 +723,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/ChatApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1932#1940#0" expanded="true" />
-            <element signature="e#1997#2005#0" expanded="true" />
-            <element signature="e#2069#2078#0" expanded="true" />
-            <element signature="e#2139#2148#0" expanded="true" />
-            <element signature="class#UserConfig#0;class#Main#0" expanded="false" />
-            <element signature="method#repeated#0;class#Main#0" expanded="false" />
-            <element signature="method#login#0;class#Main#0" expanded="false" />
-            <element signature="method#jsArrayParse#0;class#Main#0" expanded="false" />
-            <element signature="e#3924#3932#0" expanded="true" />
-            <element signature="class#4622:4921" expanded="false" />
-            <element signature="class#4969:5174" expanded="false" />
-            <element signature="class#5230:5598" expanded="false" />
-            <element signature="class#5698:6446" expanded="false" />
-            <element signature="class#6503:6912" expanded="false" />
-            <element signature="class#6969:7341" expanded="false" />
-            <element signature="class#10867:13400" expanded="false" />
-            <element signature="class#13653:19484" expanded="false" />
-            <element signature="e#22656#22664#0" expanded="true" />
-            <element signature="e#22796#22804#0" expanded="true" />
-            <element signature="class#22944:23637" expanded="false" />
-            <element signature="class#23676:24538" expanded="false" />
-            <element signature="class#24583:24936" expanded="false" />
-            <element signature="class#25214:26377" expanded="false" />
-            <element signature="e#27054#28316#0" expanded="true" />
-            <element signature="e#27439#27447#0" expanded="true" />
-            <element signature="e#28315#28316#0" expanded="true" />
-            <element signature="class#29246:30064" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Friend.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-          <folding>
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#336#337#0" expanded="true" />
-            <element signature="e#367#368#0" expanded="false" />
-            <element signature="e#394#395#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="57" lean-forward="false" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="55" lean-forward="false" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1932#1940#0" expanded="true" />
-            <element signature="e#1997#2005#0" expanded="true" />
-            <element signature="e#2069#2078#0" expanded="true" />
-            <element signature="e#2139#2148#0" expanded="true" />
-            <element signature="class#UserConfig#0;class#Main#0" expanded="false" />
-            <element signature="method#repeated#0;class#Main#0" expanded="false" />
-            <element signature="method#login#0;class#Main#0" expanded="false" />
-            <element signature="method#jsArrayParse#0;class#Main#0" expanded="false" />
-            <element signature="e#3924#3932#0" expanded="true" />
-            <element signature="class#4622:4921" expanded="false" />
-            <element signature="class#4969:5174" expanded="false" />
-            <element signature="class#5230:5598" expanded="false" />
-            <element signature="class#5698:6446" expanded="false" />
-            <element signature="class#6503:6912" expanded="false" />
-            <element signature="class#6969:7341" expanded="false" />
-            <element signature="class#10867:13400" expanded="false" />
-            <element signature="class#13653:19484" expanded="false" />
-            <element signature="e#22656#22664#0" expanded="true" />
-            <element signature="e#22796#22804#0" expanded="true" />
-            <element signature="class#22944:23637" expanded="false" />
-            <element signature="class#23676:24538" expanded="false" />
-            <element signature="class#24583:24936" expanded="false" />
-            <element signature="class#25214:26377" expanded="false" />
-            <element signature="e#27054#28316#0" expanded="true" />
-            <element signature="e#27439#27447#0" expanded="true" />
-            <element signature="e#28315#28316#0" expanded="true" />
-            <element signature="class#29246:30064" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="55" lean-forward="true" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1932#1940#0" expanded="true" />
-            <element signature="e#1997#2005#0" expanded="true" />
-            <element signature="e#2069#2078#0" expanded="true" />
-            <element signature="e#2139#2148#0" expanded="true" />
-            <element signature="class#UserConfig#0;class#Main#0" expanded="false" />
-            <element signature="method#repeated#0;class#Main#0" expanded="false" />
-            <element signature="method#login#0;class#Main#0" expanded="false" />
-            <element signature="method#jsArrayParse#0;class#Main#0" expanded="false" />
-            <element signature="e#3924#3932#0" expanded="true" />
-            <element signature="class#4622:4921" expanded="false" />
-            <element signature="class#4969:5174" expanded="false" />
-            <element signature="class#5230:5598" expanded="false" />
-            <element signature="class#5698:6446" expanded="false" />
-            <element signature="class#6503:6912" expanded="false" />
-            <element signature="class#6969:7341" expanded="false" />
-            <element signature="class#10867:13400" expanded="false" />
-            <element signature="class#13653:19484" expanded="false" />
-            <element signature="e#22656#22664#0" expanded="true" />
-            <element signature="e#22796#22804#0" expanded="true" />
-            <element signature="class#22944:23637" expanded="false" />
-            <element signature="class#23676:24538" expanded="false" />
-            <element signature="class#24583:24936" expanded="false" />
-            <element signature="class#25214:26377" expanded="false" />
-            <element signature="e#27054#28316#0" expanded="true" />
-            <element signature="e#27439#27447#0" expanded="true" />
-            <element signature="e#28315#28316#0" expanded="true" />
-            <element signature="class#29246:30064" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="76" lean-forward="false" selection-start-line="6" selection-start-column="76" selection-end-line="6" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1932#1940#0" expanded="true" />
-            <element signature="e#1997#2005#0" expanded="true" />
-            <element signature="e#2069#2078#0" expanded="true" />
-            <element signature="e#2139#2148#0" expanded="true" />
-            <element signature="class#UserConfig#0;class#Main#0" expanded="false" />
-            <element signature="method#repeated#0;class#Main#0" expanded="false" />
-            <element signature="method#login#0;class#Main#0" expanded="false" />
-            <element signature="method#jsArrayParse#0;class#Main#0" expanded="false" />
-            <element signature="e#3924#3932#0" expanded="true" />
-            <element signature="class#4622:4921" expanded="false" />
-            <element signature="class#4969:5174" expanded="false" />
-            <element signature="class#5230:5598" expanded="false" />
-            <element signature="class#5698:6446" expanded="false" />
-            <element signature="class#6503:6912" expanded="false" />
-            <element signature="class#6969:7341" expanded="false" />
-            <element signature="class#10867:13400" expanded="false" />
-            <element signature="class#13653:19484" expanded="false" />
-            <element signature="e#22656#22664#0" expanded="true" />
-            <element signature="e#22796#22804#0" expanded="true" />
-            <element signature="class#22944:23637" expanded="false" />
-            <element signature="class#23676:24538" expanded="false" />
-            <element signature="class#24583:24936" expanded="false" />
-            <element signature="class#25214:26377" expanded="false" />
-            <element signature="e#27054#28316#0" expanded="true" />
-            <element signature="e#27439#27447#0" expanded="true" />
-            <element signature="e#28315#28316#0" expanded="true" />
-            <element signature="class#29246:30064" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/AlertBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="54" column="31" lean-forward="false" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="76" lean-forward="false" selection-start-line="6" selection-start-column="76" selection-end-line="6" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#1932#1940#0" expanded="true" />
-            <element signature="e#1997#2005#0" expanded="true" />
-            <element signature="e#2069#2078#0" expanded="true" />
-            <element signature="e#2139#2148#0" expanded="true" />
-            <element signature="class#UserConfig#0;class#Main#0" expanded="false" />
-            <element signature="method#repeated#0;class#Main#0" expanded="false" />
-            <element signature="method#login#0;class#Main#0" expanded="false" />
-            <element signature="method#jsArrayParse#0;class#Main#0" expanded="false" />
-            <element signature="e#3924#3932#0" expanded="true" />
-            <element signature="class#4622:4921" expanded="false" />
-            <element signature="class#4969:5174" expanded="false" />
-            <element signature="class#5230:5598" expanded="false" />
-            <element signature="class#5698:6446" expanded="false" />
-            <element signature="class#6503:6912" expanded="false" />
-            <element signature="class#6969:7341" expanded="false" />
-            <element signature="class#10867:13400" expanded="false" />
-            <element signature="class#13653:19484" expanded="false" />
-            <element signature="e#22656#22664#0" expanded="true" />
-            <element signature="e#22796#22804#0" expanded="true" />
-            <element signature="class#22944:23637" expanded="false" />
-            <element signature="class#23676:24538" expanded="false" />
-            <element signature="class#24583:24936" expanded="false" />
-            <element signature="class#25214:26377" expanded="false" />
-            <element signature="e#27054#28316#0" expanded="true" />
-            <element signature="e#27439#27447#0" expanded="true" />
-            <element signature="e#28315#28316#0" expanded="true" />
-            <element signature="class#29246:30064" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#1932#1940#0" expanded="true" />
-            <element signature="e#1997#2005#0" expanded="true" />
-            <element signature="e#2069#2078#0" expanded="true" />
-            <element signature="e#2139#2148#0" expanded="true" />
-            <element signature="class#UserConfig#0;class#Main#0" expanded="false" />
-            <element signature="method#repeated#0;class#Main#0" expanded="false" />
-            <element signature="method#login#0;class#Main#0" expanded="false" />
-            <element signature="method#jsArrayParse#0;class#Main#0" expanded="false" />
-            <element signature="e#3924#3932#0" expanded="true" />
-            <element signature="class#4622:4921" expanded="false" />
-            <element signature="class#4969:5174" expanded="false" />
-            <element signature="class#5230:5598" expanded="false" />
-            <element signature="class#5698:6446" expanded="false" />
-            <element signature="class#6503:6912" expanded="false" />
-            <element signature="class#6969:7341" expanded="false" />
-            <element signature="class#10867:13400" expanded="false" />
-            <element signature="class#13653:19484" expanded="false" />
-            <element signature="e#22656#22664#0" expanded="true" />
-            <element signature="e#22796#22804#0" expanded="true" />
-            <element signature="class#22944:23637" expanded="false" />
-            <element signature="class#23676:24538" expanded="false" />
-            <element signature="class#24583:24936" expanded="false" />
-            <element signature="class#25214:26377" expanded="false" />
-            <element signature="e#27054#28316#0" expanded="true" />
-            <element signature="e#27439#27447#0" expanded="true" />
-            <element signature="e#28315#28316#0" expanded="true" />
-            <element signature="class#29246:30064" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1089,13 +801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="744" column="0" lean-forward="false" selection-start-line="744" selection-start-column="0" selection-end-line="744" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CNLINE.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -1138,13 +843,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ChatApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/user.cfg">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1160,19 +858,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ImageButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="38" lean-forward="true" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ImageButton.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/javafx-src.zip!/javafx/scene/image/Image.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="1099" column="0" lean-forward="false" selection-start-line="1099" selection-start-column="0" selection-end-line="1099" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1184,62 +874,223 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Friend.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/AlertBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        <state relative-caret-position="135">
+          <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/src.zip!/java/util/concurrent/ThreadPoolExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="1141" column="0" lean-forward="false" selection-start-line="1141" selection-start-column="0" selection-end-line="1141" selection-end-column="0" />
           <folding>
-            <element signature="e#198#206#0" expanded="true" />
-            <element signature="e#261#269#0" expanded="true" />
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#336#337#0" expanded="true" />
+            <element signature="e#25063#25064#0" expanded="false" />
+            <element signature="e#25102#25103#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/AlertBox.java">
+    <entry file="jar://$USER_HOME$/.ideaLibSources/engine.io-client-0.2.1-sources.jar!/com/github/nkzawa/engineio/client/transports/WebSocket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="25" column="8" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="26" selection-end-column="32" />
+        <state relative-caret-position="75">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/engine.io-client-0.2.1-sources.jar!/com/github/nkzawa/engineio/client/Transport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/engine.io-client-0.2.1-sources.jar!/com/github/nkzawa/engineio/parser/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/engine.io-client-0.2.1-sources.jar!/com/github/nkzawa/utf8/UTF8.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="744" column="0" lean-forward="false" selection-start-line="744" selection-start-column="0" selection-end-line="744" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Friend.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="28" column="27" lean-forward="false" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
           <folding>
-            <element signature="e#1022#1023#0" expanded="true" />
-            <element signature="e#1068#1069#0" expanded="true" />
+            <element signature="e#304#305#0" expanded="false" />
+            <element signature="e#336#337#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socket.io-client-0.6.0.jar!/com/github/nkzawa/socketio/socketio/client/IO.class" />
+    <entry file="jar://$PROJECT_DIR$/engine.io-client-0.7.0.jar!/io/socket/emitter/Emitter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/socket.io-client-0.6.0.jar!/com/github/nkzawa/socketio/client/IO.class" />
+    <entry file="jar://$USER_HOME$/.ideaLibSources/socket.io-client-0.6.0-sources.jar!/com/github/nkzawa/socketio/client/IO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="54" column="39" lean-forward="false" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/socket.io-client-0.6.0-sources.jar!/com/github/nkzawa/socketio/client/Socket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/socket.io-client-0.6.2.jar!/io/socket/client/IO.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="43" column="37" lean-forward="false" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/engine.io-client-0.7.0-sources.jar!/io/socket/engineio/client/Socket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3510">
+          <caret line="269" column="31" lean-forward="false" selection-start-line="269" selection-start-column="31" selection-end-line="269" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/engine.io-client-0.7.0.jar!/io/socket/engineio/client/transports/WebSocket.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/okhttp-ws-3.1.2.jar!/okhttp3/ws/WebSocketCall.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/engine.io-client-0.7.0-sources.jar!/io/socket/engineio/client/transports/WebSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/okhttp-3.5.0.jar!/okhttp3/internal/Internal.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/okhttp-3.5.0-sources.jar!/okhttp3/internal/Internal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="57" column="49" lean-forward="false" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/okhttp-ws-3.1.2-sources.jar!/okhttp3/ws/WebSocketCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="652">
+          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ChatApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/engine.io-client-0.7.0-sources.jar!/io/socket/emitter/Emitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="147" column="37" lean-forward="false" selection-start-line="147" selection-start-column="37" selection-end-line="147" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/socket.io-client-0.6.2.jar!/io/socket/client/Socket.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/socket.io-client-0.6.2-sources.jar!/io/socket/client/Socket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1935">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="261" column="55" lean-forward="true" selection-start-line="261" selection-start-column="55" selection-end-line="261" selection-end-column="55" />
+        <state relative-caret-position="101">
+          <caret line="270" column="32" lean-forward="true" selection-start-line="270" selection-start-column="32" selection-end-line="270" selection-end-column="32" />
           <folding>
-            <element signature="e#1932#1940#0" expanded="true" />
-            <element signature="e#1997#2005#0" expanded="true" />
-            <element signature="e#2069#2078#0" expanded="true" />
-            <element signature="e#2139#2148#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2663#2671#0" expanded="true" />
+            <element signature="e#2728#2736#0" expanded="true" />
+            <element signature="e#2800#2809#0" expanded="true" />
+            <element signature="e#2870#2879#0" expanded="true" />
             <element signature="class#UserConfig#0;class#Main#0" expanded="false" />
             <element signature="method#repeated#0;class#Main#0" expanded="false" />
             <element signature="method#login#0;class#Main#0" expanded="false" />
+            <element signature="method#register#0;class#Main#0" expanded="false" />
             <element signature="method#jsArrayParse#0;class#Main#0" expanded="false" />
-            <element signature="e#3924#3932#0" expanded="true" />
-            <element signature="class#4622:4921" expanded="false" />
-            <element signature="class#4969:5174" expanded="false" />
-            <element signature="class#5230:5598" expanded="false" />
-            <element signature="class#5698:6446" expanded="false" />
-            <element signature="class#6503:6912" expanded="false" />
-            <element signature="class#6969:7341" expanded="false" />
-            <element signature="class#10867:13400" expanded="false" />
-            <element signature="class#13653:19484" expanded="false" />
-            <element signature="e#22656#22664#0" expanded="true" />
-            <element signature="e#22796#22804#0" expanded="true" />
-            <element signature="class#22944:23637" expanded="false" />
-            <element signature="class#23676:24538" expanded="false" />
-            <element signature="class#24583:24936" expanded="false" />
-            <element signature="class#25214:26377" expanded="false" />
-            <element signature="e#27054#28316#0" expanded="true" />
-            <element signature="e#27439#27447#0" expanded="true" />
-            <element signature="e#28315#28316#0" expanded="true" />
-            <element signature="class#29246:30064" expanded="false" />
+            <element signature="e#4655#4663#0" expanded="true" />
+            <element signature="class#4989:5304" expanded="false" />
+            <element signature="class#5353:5652" expanded="false" />
+            <element signature="class#5700:5905" expanded="false" />
+            <element signature="class#5961:6329" expanded="false" />
+            <element signature="class#6429:7177" expanded="false" />
+            <element signature="class#7234:7643" expanded="false" />
+            <element signature="class#7700:8235" expanded="false" />
+            <element signature="class#11451:11926" expanded="false" />
+            <element signature="class#11970:14503" expanded="false" />
+            <element signature="class#14756:20587" expanded="false" />
+            <element signature="e#23759#23767#0" expanded="true" />
+            <element signature="e#23899#23907#0" expanded="true" />
+            <element signature="class#24047:24740" expanded="false" />
+            <element signature="class#24779:25641" expanded="false" />
+            <element signature="class#25686:26039" expanded="false" />
+            <element signature="e#28190#29639#0" expanded="true" />
+            <element signature="e#28645#28653#0" expanded="true" />
+            <element signature="e#29638#29639#0" expanded="true" />
+            <element signature="class#30981:31799" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -1,7 +1,7 @@
 package sample;
 
-import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Socket;
+import io.socket.client.*;
+//import com.github.nkzawa.socketio.client.*;
 
 import java.net.URISyntaxException;
 
