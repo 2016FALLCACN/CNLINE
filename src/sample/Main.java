@@ -615,26 +615,6 @@ public class Main extends Application {
         VBox functionArea = new VBox(10);
         HBox functionBar = new HBox(10);
 
-        Button logout = new Button("Log Out");
-        Button refresh = new Button("Refresh");
-        logout.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    mSocket.emit("logout", user.username);
-                    mSocket.disconnect();
-                    mSocket.connect();
-                    user.clear();
-                    loginSuccess = false;
-                    TimeUnit.SECONDS.sleep(1);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                window.setScene(scene1);
-            }
-        });
-        //refresh.setOnAction();
-
         final ListView<String> contact = new ListView<String>();
         final ObservableList names = FXCollections.observableArrayList();
         final ArrayList<String> friend = new ArrayList<String>();
@@ -657,6 +637,39 @@ public class Main extends Application {
                     // [OFFMSG] better method: with local caches
 
                 }
+            }
+        });
+
+        Button logout = new Button("Log Out");
+        Button refresh = new Button("Refresh");
+        logout.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    mSocket.emit("logout", user.username);
+                    mSocket.disconnect();
+                    mSocket.connect();
+                    user.clear();
+                    loginSuccess = false;
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                window.setScene(scene1);
+            }
+        });
+        refresh.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("[USER] *** "+user.username+" ***");
+                friend.clear();
+                for(int i = 0 ; i < user.friends.size(); i++){
+                    String tmp = user.friends.get(i).getName();
+                    friend.add(tmp);
+                }
+                names.clear();
+                names.addAll(friend);
+                contact.setItems(names);
             }
         });
 
@@ -926,48 +939,87 @@ public class Main extends Application {
             HBox loginHBox = new HBox();
             final Button login = new Button("Login");
             passwordTF.setOnKeyPressed(new EventHandler<KeyEvent>() {
-                @Override
-                public void handle(KeyEvent event) {
-                    if(event.getCode() == KeyCode.ENTER){
-                        String gotUsername = usernameTF.getCharacters().toString();
-                        String gotPassword = passwordTF.getCharacters().toString();
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode() == KeyCode.ENTER){
+                    String gotUsername = usernameTF.getCharacters().toString();
+                    String gotPassword = passwordTF.getCharacters().toString();
                         /* Login to Server */
-                        try{
+                    try{
                             /* online version */
-                            mSocket.emit("login", gotUsername, gotPassword);
-                            TimeUnit.SECONDS.sleep(1);
+                        mSocket.emit("login", gotUsername, gotPassword);
+                        TimeUnit.SECONDS.sleep(1);
                             /* offline version */
-                            // loginSuccess = login(gotUsername, gotPassword);
-                        } catch(Exception e) {
-                            e.printStackTrace();
-                        }
-                        if (user != null)
-                            user.username = gotUsername;
+                        // loginSuccess = login(gotUsername, gotPassword);
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                    }
+                    if (user != null)
+                        user.username = gotUsername;
 
                         /* Change the scene or alert */
-                        if (loginSuccess) {
+                    if (loginSuccess) {
                             /* TODO: load user's data */
-                            System.out.println("[USER] *** "+user.username+" ***");
-                            friend.clear();
-                            for(int i = 0 ; i < user.friends.size(); i++){
-                                String tmp = user.friends.get(i).getName();
-                                friend.add(tmp);
-                            }
-                            names.clear();
-                            names.addAll(friend);
-                            contact.setItems(names);
-                            window.setScene(scene2);
-                            usernameTF.setText("");
-                            passwordTF.setText("");
-                        } else {
-                            AlertBox.display("Attention", "The user info is wrong!");
-                            usernameTF.setText("");
-                            passwordTF.setText("");
+                        System.out.println("[USER] *** "+user.username+" ***");
+                        friend.clear();
+                        for(int i = 0 ; i < user.friends.size(); i++){
+                            String tmp = user.friends.get(i).getName();
+                            friend.add(tmp);
                         }
+                        names.clear();
+                        names.addAll(friend);
+                        contact.setItems(names);
+                        window.setScene(scene2);
+                        usernameTF.setText("");
+                        passwordTF.setText("");
+                    } else {
+                        AlertBox.display("Attention", "The user info is wrong!");
+                        usernameTF.setText("");
+                        passwordTF.setText("");
                     }
                 }
-            });
-            /* TODO: login code copy */
+            }
+        });
+            login.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String gotUsername = usernameTF.getCharacters().toString();
+                String gotPassword = passwordTF.getCharacters().toString();
+                    /* Login to Server */
+                try{
+                        /* online version */
+                    mSocket.emit("login", gotUsername, gotPassword);
+                    TimeUnit.SECONDS.sleep(1);
+                        /* offline version */
+                    // loginSuccess = login(gotUsername, gotPassword);
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+                if (user != null)
+                    user.username = gotUsername;
+
+                    /* Change the scene or alert */
+                if (loginSuccess) {
+                        /* TODO: load user's data */
+                    System.out.println("[USER] *** "+user.username+" ***");
+                    friend.clear();
+                    for(int i = 0 ; i < user.friends.size(); i++){
+                        String tmp = user.friends.get(i).getName();
+                        friend.add(tmp);
+                    }
+                    names.clear();
+                    names.addAll(friend);
+                    contact.setItems(names);
+                    window.setScene(scene2);
+                    usernameTF.setText("");
+                    passwordTF.setText("");
+                } else {
+                    AlertBox.display("Attention", "The user info is wrong!");
+                    usernameTF.setText("");
+                    passwordTF.setText("");
+                }
+            }
+        });
 
             HBox registerHBox = new HBox();
             Text registerHint = new Text("have no account yet?  ");
