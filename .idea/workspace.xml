@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/engine.io-client-0.2.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/socket.io-client-0.1.0.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/ChatApplication.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/ChatApplication.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Friend.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Friend.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$1.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$1.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/uploads/gcc/test/xxx.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$10.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$10.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$11.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$11.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$12.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$12.class" />
@@ -19,20 +15,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$17.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$17.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$18.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$18.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$19.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$19.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$2.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$3.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$4.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$5.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$6.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$7.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$7.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$8.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$8.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$9.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$UserConfig.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main$UserConfig.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/Main.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CNLINE.iml" afterPath="$PROJECT_DIR$/CNLINE.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/ChatApplication.java" afterPath="$PROJECT_DIR$/src/sample/ChatApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Friend.java" afterPath="$PROJECT_DIR$/src/sample/Friend.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -95,39 +81,39 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="270" column="32" lean-forward="true" selection-start-line="270" selection-start-column="32" selection-end-line="270" selection-end-column="32" />
+            <state relative-caret-position="313">
+              <caret line="676" column="70" lean-forward="false" selection-start-line="676" selection-start-column="70" selection-end-line="676" selection-end-column="70" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2663#2671#0" expanded="true" />
-                <element signature="e#2728#2736#0" expanded="true" />
-                <element signature="e#2800#2809#0" expanded="true" />
-                <element signature="e#2870#2879#0" expanded="true" />
+                <element signature="e#2838#2846#0" expanded="true" />
+                <element signature="e#2903#2911#0" expanded="true" />
+                <element signature="e#2975#2984#0" expanded="true" />
+                <element signature="e#3045#3054#0" expanded="true" />
                 <element signature="class#UserConfig#0;class#Main#0" expanded="false" />
                 <element signature="method#repeated#0;class#Main#0" expanded="false" />
                 <element signature="method#login#0;class#Main#0" expanded="false" />
                 <element signature="method#register#0;class#Main#0" expanded="false" />
                 <element signature="method#jsArrayParse#0;class#Main#0" expanded="false" />
-                <element signature="e#4655#4663#0" expanded="true" />
-                <element signature="class#4989:5304" expanded="false" />
-                <element signature="class#5353:5652" expanded="false" />
-                <element signature="class#5700:5905" expanded="false" />
-                <element signature="class#5961:6329" expanded="false" />
-                <element signature="class#6429:7177" expanded="false" />
-                <element signature="class#7234:7643" expanded="false" />
-                <element signature="class#7700:8235" expanded="false" />
-                <element signature="class#11451:11926" expanded="false" />
-                <element signature="class#11970:14503" expanded="false" />
-                <element signature="class#14756:20587" expanded="false" />
-                <element signature="e#23759#23767#0" expanded="true" />
-                <element signature="e#23899#23907#0" expanded="true" />
-                <element signature="class#24047:24740" expanded="false" />
-                <element signature="class#24779:25641" expanded="false" />
-                <element signature="class#25686:26039" expanded="false" />
-                <element signature="e#28190#29639#0" expanded="true" />
-                <element signature="e#28645#28653#0" expanded="true" />
-                <element signature="e#29638#29639#0" expanded="true" />
-                <element signature="class#30981:31799" expanded="false" />
+                <element signature="e#4830#4838#0" expanded="true" />
+                <element signature="class#5164:5479" expanded="false" />
+                <element signature="class#5528:5827" expanded="false" />
+                <element signature="class#5875:6080" expanded="false" />
+                <element signature="class#6136:6504" expanded="false" />
+                <element signature="class#7409:7818" expanded="false" />
+                <element signature="class#7875:8410" expanded="false" />
+                <element signature="class#11629:12104" expanded="false" />
+                <element signature="class#12148:14681" expanded="false" />
+                <element signature="class#14934:20765" expanded="false" />
+                <element signature="e#23937#23945#0" expanded="true" />
+                <element signature="e#24077#24085#0" expanded="true" />
+                <element signature="class#24225:24918" expanded="false" />
+                <element signature="class#24957:25819" expanded="false" />
+                <element signature="class#25864:26217" expanded="false" />
+                <element signature="e#28443#32611#0" expanded="true" />
+                <element signature="e#28942#28950#0" expanded="true" />
+                <element signature="e#29855#29863#0" expanded="true" />
+                <element signature="e#32610#32611#0" expanded="true" />
+                <element signature="class#34907:35725" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -190,6 +176,8 @@
       <find>download</find>
       <find>window</find>
       <find>emit</find>
+      <find>set(!</find>
+      <find>upload</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -679,7 +667,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23133236" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23133236" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1058,39 +1046,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="270" column="32" lean-forward="true" selection-start-line="270" selection-start-column="32" selection-end-line="270" selection-end-column="32" />
+        <state relative-caret-position="313">
+          <caret line="676" column="70" lean-forward="false" selection-start-line="676" selection-start-column="70" selection-end-line="676" selection-end-column="70" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2663#2671#0" expanded="true" />
-            <element signature="e#2728#2736#0" expanded="true" />
-            <element signature="e#2800#2809#0" expanded="true" />
-            <element signature="e#2870#2879#0" expanded="true" />
+            <element signature="e#2838#2846#0" expanded="true" />
+            <element signature="e#2903#2911#0" expanded="true" />
+            <element signature="e#2975#2984#0" expanded="true" />
+            <element signature="e#3045#3054#0" expanded="true" />
             <element signature="class#UserConfig#0;class#Main#0" expanded="false" />
             <element signature="method#repeated#0;class#Main#0" expanded="false" />
             <element signature="method#login#0;class#Main#0" expanded="false" />
             <element signature="method#register#0;class#Main#0" expanded="false" />
             <element signature="method#jsArrayParse#0;class#Main#0" expanded="false" />
-            <element signature="e#4655#4663#0" expanded="true" />
-            <element signature="class#4989:5304" expanded="false" />
-            <element signature="class#5353:5652" expanded="false" />
-            <element signature="class#5700:5905" expanded="false" />
-            <element signature="class#5961:6329" expanded="false" />
-            <element signature="class#6429:7177" expanded="false" />
-            <element signature="class#7234:7643" expanded="false" />
-            <element signature="class#7700:8235" expanded="false" />
-            <element signature="class#11451:11926" expanded="false" />
-            <element signature="class#11970:14503" expanded="false" />
-            <element signature="class#14756:20587" expanded="false" />
-            <element signature="e#23759#23767#0" expanded="true" />
-            <element signature="e#23899#23907#0" expanded="true" />
-            <element signature="class#24047:24740" expanded="false" />
-            <element signature="class#24779:25641" expanded="false" />
-            <element signature="class#25686:26039" expanded="false" />
-            <element signature="e#28190#29639#0" expanded="true" />
-            <element signature="e#28645#28653#0" expanded="true" />
-            <element signature="e#29638#29639#0" expanded="true" />
-            <element signature="class#30981:31799" expanded="false" />
+            <element signature="e#4830#4838#0" expanded="true" />
+            <element signature="class#5164:5479" expanded="false" />
+            <element signature="class#5528:5827" expanded="false" />
+            <element signature="class#5875:6080" expanded="false" />
+            <element signature="class#6136:6504" expanded="false" />
+            <element signature="class#7409:7818" expanded="false" />
+            <element signature="class#7875:8410" expanded="false" />
+            <element signature="class#11629:12104" expanded="false" />
+            <element signature="class#12148:14681" expanded="false" />
+            <element signature="class#14934:20765" expanded="false" />
+            <element signature="e#23937#23945#0" expanded="true" />
+            <element signature="e#24077#24085#0" expanded="true" />
+            <element signature="class#24225:24918" expanded="false" />
+            <element signature="class#24957:25819" expanded="false" />
+            <element signature="class#25864:26217" expanded="false" />
+            <element signature="e#28443#32611#0" expanded="true" />
+            <element signature="e#28942#28950#0" expanded="true" />
+            <element signature="e#29855#29863#0" expanded="true" />
+            <element signature="e#32610#32611#0" expanded="true" />
+            <element signature="class#34907:35725" expanded="false" />
           </folding>
         </state>
       </provider>

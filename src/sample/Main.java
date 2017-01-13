@@ -17,7 +17,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.*;
@@ -41,6 +43,7 @@ import io.socket.client.*;
 import io.socket.emitter.Emitter;
 //import com.github.nkzawa.socketio.client.*;
 //import com.github.nkzawa.emitter.Emitter;
+import javafx.util.Callback;
 import org.json.*;
 
 class Serializer {
@@ -86,6 +89,7 @@ public class Main extends Application {
     /* Message Display Enable*/
     private BooleanProperty displayOnScreen = new SimpleBooleanProperty(false);
     private BooleanProperty logNotice = new SimpleBooleanProperty(false);
+    private BooleanProperty callFileJS = new SimpleBooleanProperty(false);
 
     private Queue<String> logMessageSender = new LinkedList<String>();
     private Queue<String> logMessage = new LinkedList<String>();
@@ -315,7 +319,7 @@ public class Main extends Application {
         mSocket.on("logData" ,onLogReceived);
         mSocket.on("uploadStatus", onFileUploadStatus);
         mSocket.on("listDownloadOptions", onFileListReceived);
-        mSocket.on("fileDownloadAck", onFileReceived);
+        // mSocket.on("fileDownloadAck", onFileReceived);
         mSocket.connect();
 
         /* Scene0: Register */
@@ -670,7 +674,8 @@ public class Main extends Application {
                             e.printStackTrace();
                         }
                         try {
-                            mSocket.emit("fileUpload", nowTalking, file.getName(), fileData);
+                            mSocket.emit("fileUpload", user.username, nowTalking, file.getName(), fileData);
+                            TimeUnit.MILLISECONDS.sleep(1);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -701,21 +706,65 @@ public class Main extends Application {
                         pop.setTitle("File Select");
                         pop.setMinWidth(250);
                         Scene popScene;
-                        Pane pane = new GridPane();
+                        Pane pane = new Pane();
+                        VBox vbox = new VBox();
 
                         ListView<String> filesList = new ListView<String>();
                         ObservableList fileNames = FXCollections.observableArrayList();
                         fileNames.addAll(user.getFriend(nowTalking).getFiles());
                         filesList.setItems(fileNames);
-                        filesList.getSelectionModel().selectedItemProperty().addListener( new ChangeListener<String>() {
+                        filesList.setStyle("-fx-control-inner-background: #ffffff;");
+                        /*filesList.getSelectionModel().selectedItemProperty().addListener( new ChangeListener<String>() {
                             public void changed(ObservableValue<? extends String> ov, String old_val, String new_val) {
                                 System.out.println("[FILELIST] select: "+new_val);
                                 fileToDownload.offer(new_val); // push to queue of files
                                 pop.close();
                             }
+                        });*/
+                        ArrayList<String> selectedFiles = new ArrayList<String>();
+                        TextArea showFileSelected = new TextArea();
+                        showFileSelected.setMaxSize(240, 100);
+                        showFileSelected.setEditable(false);
+                        filesList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                String tmp = filesList.getSelectionModel().getSelectedItem();
+                                System.out.println("[EVENT] label "+tmp+" is clicked");
+                                if(selectedFiles.contains(tmp)){
+                                    selectedFiles.remove(tmp);
+                                    showFileSelected.setText("");
+                                    for (String sf: selectedFiles) {
+                                        showFileSelected.appendText(sf+"\n");
+                                    }
+                                    System.out.println("[FILELIST] unselect: "+tmp);
+                                } else {
+                                    selectedFiles.add(tmp);
+                                    showFileSelected.setText("");
+                                    for (String sf: selectedFiles) {
+                                        showFileSelected.appendText(sf+"\n");
+                                    }
+                                    System.out.println("[FILELIST] select: "+tmp);
+                                }
+                            }
                         });
 
-                        pane.getChildren().add(filesList);
+                        Button download = new Button("Download");
+                        download.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                for (String str: selectedFiles) {
+                                    fileToDownload.offer(str);
+                                    fileDownloadPlace.offer(System.getProperty("user.dir"));
+                                    callFileJS.set(!callFileJS.get());
+                                    try { TimeUnit.MILLISECONDS.sleep(1); } catch (Exception e) { e.printStackTrace(); }
+                                }
+                                pop.close();
+                            }
+                        });
+
+                        download.setAlignment(Pos.CENTER);
+                        vbox.getChildren().addAll(filesList, showFileSelected, download);
+                        pane.getChildren().add(vbox);
                         popScene = new Scene(pane);
                         pop.setScene(popScene);
                         pop.showAndWait();
@@ -723,20 +772,17 @@ public class Main extends Application {
                 };
                 fileList.show(null);
 
-                try {TimeUnit.SECONDS.sleep(1); } catch (Exception e) { e.printStackTrace(); }
+                try {TimeUnit.MILLISECONDS.sleep(1); } catch (Exception e) { e.printStackTrace(); }
 
-                fileDownloadPlace.offer(System.getProperty("user.dir"));
 
-                try {
-                    mSocket.emit("fileDownload", user.username, nowTalking, fileToDownload.poll());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                // fileDownloadPlace.offer(System.getProperty("user.dir"));
+
                 /*DirectoryChooser directoryChooser = new DirectoryChooser();
                 File selectedDirectory = directoryChooser.showDialog(window);
 
                 if(selectedDirectory == null){
                     AlertBox.display("Attention", "You haven't choose a dir yet!");
+                    fileDownloadPlace.offer(System.getProperty("user.dir"));
                 }else{
                     System.out.println(selectedDirectory.getName());
                     fileDownloadPlace.offer(selectedDirectory.getAbsolutePath());
@@ -748,6 +794,28 @@ public class Main extends Application {
                 }*/
             }
         }); /* TODO: window showup */
+
+        /* TODO: change boolean handler */
+        callFileJS.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                try {
+                    // mSocket.emit("fileDownload", user.username, nowTalking, fileToDownload.poll());
+                    try {
+                        // create a process and execute notepad.exe
+                        System.out.println("[FILE]Start Download Process!");
+                        Process process = Runtime.getRuntime().exec("node server/file.js down "
+                                +user.username+" "+nowTalking+" "+fileToDownload.poll());
+                        fileDownloadPlace.poll();
+                        System.out.println("[FILE]End Download Process!");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         Button sendMessage = new Button("send");
             /* TODO: feature: auto-newline */
