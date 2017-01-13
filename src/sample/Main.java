@@ -947,7 +947,7 @@ public class Main extends Application {
                         /* Change the scene or alert */
                         if (loginSuccess) {
                             /* TODO: load user's data */
-                            System.out.print("[USER] *** "+user.username+" ***");
+                            System.out.println("[USER] *** "+user.username+" ***");
                             friend.clear();
                             for(int i = 0 ; i < user.friends.size(); i++){
                                 String tmp = user.friends.get(i).getName();
