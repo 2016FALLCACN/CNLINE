@@ -622,9 +622,15 @@ public class Main extends Application {
             public void handle(ActionEvent event) {
                 try {
                     mSocket.emit("logout", user.username);
+                    mSocket.disconnect();
+                    mSocket.connect();
+                    user.clear();
+                    loginSuccess = false;
+                    TimeUnit.SECONDS.sleep(1);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                window.setScene(scene1);
             }
         });
         //refresh.setOnAction();
@@ -632,7 +638,7 @@ public class Main extends Application {
         final ListView<String> contact = new ListView<String>();
         final ObservableList names = FXCollections.observableArrayList();
         final ArrayList<String> friend = new ArrayList<String>();
-        names.addAll(friend);
+        // names.addAll(friend);
         contact.setItems(names);
 	    contact.getSelectionModel().selectedItemProperty().addListener( new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> ov,
@@ -941,30 +947,18 @@ public class Main extends Application {
                         /* Change the scene or alert */
                         if (loginSuccess) {
                             /* TODO: load user's data */
+                            System.out.print("[USER] *** "+user.username+" ***");
+                            friend.clear();
                             for(int i = 0 ; i < user.friends.size(); i++){
-                                //final Button tmp = new Button(user.friends.get(i).getName());
-                                final String tmp = user.friends.get(i).getName();
-                               // tmp.setOnAction(new EventHandler<ActionEvent>() {
-                               //     @Override
-                               //     public void handle(ActionEvent event) {
-                                        /* TODO: load offline messages */
-                               //         if(!nowTalking.equals(tmp)) {
-                               //             messageLog.setText("");
-                               //             nowTalking = tmp;
-                               //         }
-                                        /*try {
-                                            TimeUnit.SECONDS.sleep(1);
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
-                                        messageLog.appendText(nowMessage);*/
-                               //     }
-                               // });
+                                String tmp = user.friends.get(i).getName();
                                 friend.add(tmp);
                             }
+                            names.clear();
                             names.addAll(friend);
                             contact.setItems(names);
                             window.setScene(scene2);
+                            usernameTF.setText("");
+                            passwordTF.setText("");
                         } else {
                             AlertBox.display("Attention", "The user info is wrong!");
                             usernameTF.setText("");
@@ -973,42 +967,7 @@ public class Main extends Application {
                     }
                 }
             });
-            login.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    String gotUsername = usernameTF.getCharacters().toString();
-                    String gotPassword = passwordTF.getCharacters().toString();
-                        /* Login to Server */
-                    try{
-                            /* online version */
-                        mSocket.emit("login", gotUsername, gotPassword);
-                        TimeUnit.SECONDS.sleep(1);
-                            /* offline version */
-                        // loginSuccess = login(gotUsername, gotPassword);
-                    } catch(Exception e) {
-                        e.printStackTrace();
-                    }
-                    if (user != null)
-                        user.username = gotUsername;
-
-                        /* Change the scene or alert */
-                    if (loginSuccess) {
-                            /* TODO: load user's data */
-                        for(int i = 0 ; i < user.friends.size(); i++){
-                            //final Button tmp = new Button(user.friends.get(i).getName());
-                            final String tmp = user.friends.get(i).getName();
-                            friend.add(tmp);
-                        }
-                        names.addAll(friend);
-                        contact.setItems(names);
-                        window.setScene(scene2);
-                    } else {
-                        AlertBox.display("Attention", "The user info is wrong!");
-                        usernameTF.setText("");
-                        passwordTF.setText("");
-                    }
-                }
-            });
+            /* TODO: login code copy */
 
             HBox registerHBox = new HBox();
             Text registerHint = new Text("have no account yet?  ");

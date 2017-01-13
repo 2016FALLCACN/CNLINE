@@ -34,4 +34,9 @@ public class User {
         }
         return null;
     }
+
+    public void clear(){
+        username = "";
+        friends.clear();
+    }
 }
