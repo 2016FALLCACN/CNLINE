@@ -10,9 +10,9 @@ A final project from the course "Computer Networks" held in Fall 2016, Departmen
     - [X] Online messaging
     - [X] Offline messaging (though naive; in other words, no local cache)
     - [X] Historical logs (persistent)
-  - [X] File Transfer (20%)
-    - [X] Online send/receive
-    - [X] Multiple file sharing requests
+  - [ ] File Transfer (20%)
+    - [ ] Online send/receive
+    - [ ] Multiple file sharing requests
   - [X] User Interface (10%)
   - [ ] Report (30%)
     - [ ] Protocol Specification
