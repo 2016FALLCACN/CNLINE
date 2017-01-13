@@ -1,7 +1,7 @@
 var cp = require('child_process');
 var readline = require('readline');
 
-var io = require('socket.io').listen(8000);
+var io = require('socket.io').listen(60000);
 var fs = require('fs');
 
 var clients = []; // socket of connected client
