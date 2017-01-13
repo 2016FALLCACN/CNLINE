@@ -1,7 +1,7 @@
 var cp = require('child_process');
 var readline = require('readline');
 
-var io = require('socket.io').listen(8000);
+var io = require('socket.io').listen(60000);
 var fs = require('fs');
 
 var clients = []; // socket of connected client
@@ -165,7 +165,6 @@ io.on('connection', function(socket) {
 
 		/* send to the other */
         userArray = fs.readFileSync('user.cfg').toString().split("\n");
-		var objectIndex;
 		var find = false;
 		for(i in userArray) {
             var validUser = userArray[i].toString().split(":");

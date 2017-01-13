@@ -11,7 +11,6 @@ console.log(args[0]+' '+args[1]+' '+args[2]+' '+args[3]);
 /*args[0] = mode:up, args[1] = sender name, args[2] = receiver name, args[3] = file name*/
 if (args[0] === "up") {
     fs.readFile(args[3], 'binary', function(err, data) {
-        console.log("enter");
         if (err) {
             console.log("cannot open file:"+args[3]);
         }
