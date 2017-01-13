@@ -179,6 +179,14 @@ public class Main extends Application {
         }
     };
 
+    private Emitter.Listener onUserList = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            System.out.println(args[0]);
+            user.setFriend(jsArrayParse(args[0].toString()));
+        }
+    };
+
     private Emitter.Listener onRegister = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
@@ -320,6 +328,7 @@ public class Main extends Application {
         ChatApplication app = new ChatApplication();
         mSocket = app.getSocket();
         mSocket.on("loginAck", onLogin);
+        mSocket.on("userListAck", onUserList);
         mSocket.on("registerAck", onRegister);
         mSocket.on("messageAck", onMessage);
         mSocket.on("messageFromOther", onMessageReceived);
@@ -661,6 +670,8 @@ public class Main extends Application {
         refresh.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                mSocket.emit("askUserList");
+                try { TimeUnit.MILLISECONDS.sleep(1); } catch (Exception e) { e.printStackTrace(); }
                 System.out.println("[USER] *** "+user.username+" ***");
                 friend.clear();
                 for(int i = 0 ; i < user.friends.size(); i++){

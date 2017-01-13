@@ -70,6 +70,19 @@ io.on('connection', function(socket) {
 			clients[my_client_num].emit('loginAck', "fail", []);
 	
 	});
+
+	socket.on('askUserList',function(){
+		/* find valid user */
+		client_name[my_client_num] = id;
+		var sendArr = [];
+		for(i in userArray) {
+			var oneline = userArray[i].toString().split(":");
+			if(oneline[0] != "")
+				sendArr[i] = oneline[0];
+		}
+		clients[my_client_num].emit('userListAck', sendArr);
+	});
+
 	/* server's handler for "register" */
 	socket.on('register',function(id, pwd){
 		console.log("[Register]:"+id);

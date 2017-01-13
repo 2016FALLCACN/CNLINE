@@ -15,14 +15,18 @@ public class User {
     public String username = "";
 
     public User(ArrayList<String> strings){
+        this.setFriend(strings);
+    }
+
+    public void setFriend(ArrayList<String> strings){
         for(int i = 0; i < strings.size(); i++){
             this.friends.add(new Friend(strings.get(i)));
         }
         friends.sort(new Comparator<Friend>() {
-        	@Override
-        	public int compare(Friend friend1, Friend friend2) {
-        		return friend1.getName().compareTo(friend2.getName());
-        	}
+            @Override
+            public int compare(Friend friend1, Friend friend2) {
+                return friend1.getName().compareTo(friend2.getName());
+            }
         });
     }
 
