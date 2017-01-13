@@ -1,7 +1,7 @@
 var cp = require('child_process');
 var readline = require('readline');
 
-var io = require('socket.io').listen(8000);
+var io = require('socket.io').listen(60000);
 var fs = require('fs');
 
 var clients = []; // socket of connected client
@@ -243,10 +243,21 @@ io.on('connection', function(socket) {
         })
     });
 
-	/*socket.on('disconnect',function(){
-		io.emit('all_disconnect');
-		process.exit();
-	});*/
+	socket.on('logout',function(username){
+		io.to(socket.id).emit('logoutAck');
+		var userIndex;
+		var find = false;
+		for(i in client_name) {
+			if(client_name[i] == username){
+				clients.splice(i, 1);
+				client_name.splice(i, 1);
+				client_userid.splice(i, 1);
+				conn_client--;
+				break;
+			}
+		}
+
+	});
 });
 
 
