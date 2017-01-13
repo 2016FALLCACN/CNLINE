@@ -17,9 +17,7 @@ public class Friend {
     public String getName() {
         return name;
     }
-    public ArrayList<String> getFiles() {
-        return files;
-    }
+    public ArrayList<String> getFiles() { return files; }
 
     public void addMessage(String msg){
         messages.add(msg);
@@ -27,7 +25,8 @@ public class Friend {
 
     public void addFile(String file){ files.add(file); }
 
-    public void addAllFile(ArrayList<String> manyfile){
+    public void setAllFile(ArrayList<String> manyfile){
+        this.files.clear();
         for(int i = 0; i < manyfile.size(); i++){
             this.files.add(manyfile.get(i));
         }

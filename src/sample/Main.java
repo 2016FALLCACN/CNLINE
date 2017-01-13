@@ -25,11 +25,11 @@ import javafx.stage.*;
 // for fancy features
 import javafx.scene.paint.Paint;
 import javafx.geometry.Pos;
+
+import java.net.URISyntaxException;
 import java.util.regex.*;
 
 import javafx.application.Platform;
-
-
 
 import java.io.*;
 import java.util.ArrayList;
@@ -37,9 +37,32 @@ import java.util.StringTokenizer;
 import java.util.concurrent.TimeUnit;
 import java.util.*;
 
-import com.github.nkzawa.socketio.client.*;
-import com.github.nkzawa.emitter.Emitter;
+import io.socket.client.*;
+import io.socket.emitter.Emitter;
+//import com.github.nkzawa.socketio.client.*;
+//import com.github.nkzawa.emitter.Emitter;
 import org.json.*;
+
+class Serializer {
+
+    public static byte[] serialize(Object obj) throws IOException {
+        try(ByteArrayOutputStream b = new ByteArrayOutputStream()){
+            try(ObjectOutputStream o = new ObjectOutputStream(b)){
+                o.writeObject(obj);
+            }
+            return b.toByteArray();
+        }
+    }
+
+    public static Object deserialize(byte[] bytes) throws IOException, ClassNotFoundException {
+        try(ByteArrayInputStream b = new ByteArrayInputStream(bytes)){
+            try(ObjectInputStream o = new ObjectInputStream(b)){
+                return o.readObject();
+            }
+        }
+    }
+
+}
 
 public class Main extends Application {
 
@@ -220,11 +243,14 @@ public class Main extends Application {
     private Emitter.Listener onFileListReceived = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
+            System.out.println("[FILELIST] something should happen!");
             if(args[0] != null) {
+                System.out.println(args[0].toString());
                 for (Friend friend: user.friends) {
-                    friend.getName().equals(nowTalking);
-                    friend.addAllFile(jsArrayParse(args[1].toString()));
-                    break;
+                    if(friend.getName().equals(nowTalking) ) {
+                        friend.setAllFile(jsArrayParse(args[0].toString()));
+                        break;
+                    }
                 }
             }
         }
@@ -232,33 +258,40 @@ public class Main extends Application {
 
     private Emitter.Listener onFileReceived = new Emitter.Listener() {
         @Override
-        public void call(Object... args) { /* TODO: Object to Binary*/
+        public void call(Object... args) {
+            System.out.println("[FILE] listener called!");
             if(!args[0].toString().equals("") && !args[1].toString().equals("")){
                 System.out.println("[FILE] recv: "+args[0]);
                 try {
-                    FileOutputStream out = new FileOutputStream(fileDownloadPlace.poll(), true);
+                    FileOutputStream out = new FileOutputStream(fileDownloadPlace.poll()+"/"+args[0].toString());
 
+                    /* try another */
+                    /*ObjectOutputStream oos = new ObjectOutputStream(out);
+                    oos.writeObject(args[1]);
+                    oos.flush();
+                    oos.close();*/
+
+                    /* original method */
                     byte[] binFile = null;
-                    try(ByteArrayOutputStream b = new ByteArrayOutputStream()){
-                        try(ObjectOutputStream o = new ObjectOutputStream(b)){
-                            o.writeObject(args[1]);
-                        }
-                        binFile = b.toByteArray();
-                    } catch (Exception e){
+                    try {
+                        binFile = Serializer.serialize(args[1]);
+                    }
+                    catch (Exception e){
                         e.printStackTrace();
                     }
-
-                    if (binFile != null) {
+                    if (args[1] != null) {
                         out.write(binFile);
                         out.flush();
                         out.close();
+                        System.out.print("[FILE] recv success");
                     } else {
                         System.out.print("[FILE] null file");
                     }
+
                 } catch (Exception e){
                     e.printStackTrace();
                 }
-            }else{
+            } else {
                 System.out.println("[FILE] recv fail");
             }
         }
@@ -621,7 +654,7 @@ public class Main extends Application {
         Button uploadFile = new Button("Upload");
         uploadFile.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent event) { /* TODO: handle not selecting */
                 List<File> list = fileChooser.showOpenMultipleDialog(window);
                 fileChooser.setTitle("Select files");
                 fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
@@ -663,45 +696,56 @@ public class Main extends Application {
                 PopupWindow fileList = new PopupWindow() {
                     @Override
                     public void show(Window owner) {
-                    Stage pop = new Stage();
-                    pop.setTitle("File Select");
-                    pop.setMinWidth(250);
-                    Scene popScene;
-                    Pane pane = new GridPane();
+                        // super.show(owner);
+                        Stage pop = new Stage();
+                        pop.setTitle("File Select");
+                        pop.setMinWidth(250);
+                        Scene popScene;
+                        Pane pane = new GridPane();
 
-                    ListView<String> filesList = new ListView<String>();
-                    ObservableList fileNames = FXCollections.observableArrayList();
-                    fileNames.addAll(user.getFriend(nowTalking).getFiles());
-                    filesList.setItems(fileNames);
-                    filesList.getSelectionModel().selectedItemProperty().addListener( new ChangeListener<String>() {
-                        public void changed(ObservableValue<? extends String> ov, String old_val, String new_val) {
-                            System.out.println(new_val);
-                            fileToDownload.offer(new_val); // push to queue of files
-                            pop.close();
-                        }
-                    });
+                        ListView<String> filesList = new ListView<String>();
+                        ObservableList fileNames = FXCollections.observableArrayList();
+                        fileNames.addAll(user.getFriend(nowTalking).getFiles());
+                        filesList.setItems(fileNames);
+                        filesList.getSelectionModel().selectedItemProperty().addListener( new ChangeListener<String>() {
+                            public void changed(ObservableValue<? extends String> ov, String old_val, String new_val) {
+                                System.out.println("[FILELIST] select: "+new_val);
+                                fileToDownload.offer(new_val); // push to queue of files
+                                pop.close();
+                            }
+                        });
 
-                    pane.getChildren().add(filesList);
-                    popScene = new Scene(pane);
-                    pop.setScene(popScene);
+                        pane.getChildren().add(filesList);
+                        popScene = new Scene(pane);
+                        pop.setScene(popScene);
+                        pop.showAndWait();
                     }
                 };
-                fileList.show(window);
+                fileList.show(null);
 
-                /* select file and choose where to place it */
-                DirectoryChooser directoryChooser = new DirectoryChooser();
+                try {TimeUnit.SECONDS.sleep(1); } catch (Exception e) { e.printStackTrace(); }
+
+                fileDownloadPlace.offer(System.getProperty("user.dir"));
+
+                try {
+                    mSocket.emit("fileDownload", user.username, nowTalking, fileToDownload.poll());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                /*DirectoryChooser directoryChooser = new DirectoryChooser();
                 File selectedDirectory = directoryChooser.showDialog(window);
 
                 if(selectedDirectory == null){
                     AlertBox.display("Attention", "You haven't choose a dir yet!");
                 }else{
                     System.out.println(selectedDirectory.getName());
+                    fileDownloadPlace.offer(selectedDirectory.getAbsolutePath());
                     try {
                         mSocket.emit("fileDownload", user.username, nowTalking, fileToDownload.poll());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }
+                }*/
             }
         }); /* TODO: window showup */
 
