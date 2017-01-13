@@ -14,6 +14,10 @@ process.on('message', function(m, socket) {
         var upload = 0;
         socket.on('data', function(data) {
             var option = data.toString().split(':');
+            var tail = data.toString().indexOf("<FINISH>");
+           /* if (tail > -1) {
+                console.log("I find the tail.ha ha ha!!!!!!!");
+            }*/
             if (option[0] === "mode") {
                 console.log(option[0]);
                 console.log(data.toString());
@@ -40,8 +44,9 @@ process.on('message', function(m, socket) {
                             socket.write("sendFile");
                             for (i = 0; i < 100000000; i++);
                             socket.write(data);
-                            for (i = 0; i < 100000000; i++);
-                            socket.write("finish");
+                            for (i = 0; i < 500000000; i++);
+                            console.log("[send data]after loop");
+                            socket.write("<FINISH>");
                         }
                     });
                 }
@@ -93,7 +98,11 @@ process.on('message', function(m, socket) {
                 }
             }
             else if (option[0] === "finish") {
+                console.log("file upload finish ===========================");
                 append = 0;
+            }
+            else if (option[0] === "test") {
+                console.log("how may tests do we have");
             }
             else {
                 if (!append) {
@@ -101,15 +110,20 @@ process.on('message', function(m, socket) {
                     append = 1;
                 }
                 else {
-                    fs.appendFile(writeDestDir+'/'+filename, data);
+                    fs.appendFileSync(writeDestDir+'/'+filename, data);
                 }
                 console.log("file upload success");
+                if (tail > -1) {
+                    console.log("I find the tail.ha ha ha!!!!!!!");
+                    socket.write("finish");
+                }
             }
         });
         
         socket.on('end', function() {
             clients.splice(clients.indexOf(socket), 1);
             console.log(socket.name+" left the chat");
+            process.exit();
         });
     }
 });
