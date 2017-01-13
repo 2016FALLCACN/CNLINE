@@ -26,16 +26,24 @@ stdin.addListener("data", function(d) {
             console.log("incorrect format");
         }
         else {
-            fs.readFile(arr[2], 'binary', function(err, data) {
-                if (err) {
-                    console.log("cannot open the file:"+arr[2]);
+            for (i in arr) {
+                if (i >= 2) {
+                    var cp = require('child_process');
+                    cp.exec('node ./file.js up '+args[0]+' '+arr[1]+' '+arr[i]+' /T /F', 
+                    function(err, stdout, stderr) {
+                        console.log(stdout);
+                    });
+/*                    fs.readFile(arr[i], 'binary', function(err, data) {
+                        if (err) {
+                            console.log("cannot open the file:"+baseName);
+                        }
+                        else {
+                            console.log(baseName);
+                            socket.emit('fileUpload', arr[1], baseName, data);
+                        }
+                    });*/
                 }
-                else {
-                    console.log(path.basename(arr[2]));
-                    var tmp = path.basename(arr[2]);
-                    socket.emit('fileUpload', arr[1], tmp, data);
-                }
-            });
+            }
         }
     }
     else if (arr[0] === "get") {
@@ -44,7 +52,16 @@ stdin.addListener("data", function(d) {
         }
         else {
             /*arr[1] = senderName, arr[2] = fileName*/
-            socket.emit('fileDownload', usrName, arr[1], arr[2]);
+            for (i in arr) {
+                if (i >= 2) {
+                    var cp = require('child_process');
+                    cp.exec('node ./file.js down '+usrName+' '+arr[1]+' '+arr[i]+' /T /F', 
+                    function(err, stdout, stderr) {
+                        console.log(stdout);
+                    });
+//                    socket.emit('fileDownload', usrName, arr[1], arr[i]);
+                }
+            }
         }
     }
     else if (arr[0] === "msg"){
@@ -77,7 +94,7 @@ socket.on('messageFromOther',function(name, data){
 });
 
 
-socket.on('fileDownloadAck',function(filename, data){
+socket.on('fileDownloadAck', function(filename, data){
         if (filename === "") {
             console.log("cannot fetch the file");
         }
