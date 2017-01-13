@@ -73,6 +73,9 @@ io.on('connection', function(socket) {
 
 	socket.on('askUserList',function(){
 		/* find valid user */
+
+		userArray = fs.readFileSync('user.cfg').toString().split("\n");
+		
 		var sendArr = [];
 		for(i in userArray) {
 			var oneline = userArray[i].toString().split(":");

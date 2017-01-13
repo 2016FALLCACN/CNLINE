@@ -19,6 +19,7 @@ public class User {
     }
 
     public void setFriend(ArrayList<String> strings){
+        this.friends.clear();
         for(int i = 0; i < strings.size(); i++){
             this.friends.add(new Friend(strings.get(i)));
         }
