@@ -864,7 +864,7 @@ public class Main extends Application {
                     try {
                         // create a process and execute notepad.exe
                         System.out.println("[FILE]Start Download Process!");
-                        Process process = Runtime.getRuntime().exec("node server/file.js down "
+                        Process process = Runtime.getRuntime().exec("node server/fileClient.js download "
                                 +user.username+" "+nowTalking+" "+fileToDownload.poll());
                         fileDownloadPlace.poll();
                         System.out.println("[FILE]End Download Process!");
