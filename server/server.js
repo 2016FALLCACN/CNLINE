@@ -73,7 +73,6 @@ io.on('connection', function(socket) {
 
 	socket.on('askUserList',function(){
 		/* find valid user */
-		client_name[my_client_num] = id;
 		var sendArr = [];
 		for(i in userArray) {
 			var oneline = userArray[i].toString().split(":");
