@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/file.js" afterPath="$PROJECT_DIR$/server/file.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Constants.java" afterPath="$PROJECT_DIR$/src/sample/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/server.js" afterPath="$PROJECT_DIR$/server/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,10 +66,10 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="676" column="70" lean-forward="false" selection-start-line="676" selection-start-column="70" selection-end-line="676" selection-end-column="70" />
+            <state relative-caret-position="163">
+              <caret line="629" column="10" lean-forward="false" selection-start-line="629" selection-start-column="10" selection-end-line="629" selection-end-column="10" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="class#Serializer#0" expanded="false" />
                 <element signature="e#2838#2846#0" expanded="true" />
                 <element signature="e#2903#2911#0" expanded="true" />
                 <element signature="e#2975#2984#0" expanded="true" />
@@ -83,21 +84,33 @@
                 <element signature="class#5528:5827" expanded="false" />
                 <element signature="class#5875:6080" expanded="false" />
                 <element signature="class#6136:6504" expanded="false" />
+                <element signature="class#6604:7352" expanded="false" />
                 <element signature="class#7409:7818" expanded="false" />
                 <element signature="class#7875:8410" expanded="false" />
-                <element signature="class#11629:12104" expanded="false" />
-                <element signature="class#12148:14681" expanded="false" />
-                <element signature="class#14934:20765" expanded="false" />
-                <element signature="e#23937#23945#0" expanded="true" />
-                <element signature="e#24077#24085#0" expanded="true" />
-                <element signature="class#24225:24918" expanded="false" />
-                <element signature="class#24957:25819" expanded="false" />
-                <element signature="class#25864:26217" expanded="false" />
-                <element signature="e#28443#32611#0" expanded="true" />
-                <element signature="e#28942#28950#0" expanded="true" />
-                <element signature="e#29855#29863#0" expanded="true" />
-                <element signature="e#32610#32611#0" expanded="true" />
-                <element signature="class#34907:35725" expanded="false" />
+                <element signature="class#8463:9963" expanded="false" />
+                <element signature="class#10010:10171" expanded="false" />
+                <element signature="e#10090#10091#0" expanded="true" />
+                <element signature="e#10164#10165#0" expanded="true" />
+                <element signature="class#11880:12355" expanded="false" />
+                <element signature="class#12399:14932" expanded="false" />
+                <element signature="class#14966:17276" expanded="false" />
+                <element signature="class#17520:23351" expanded="false" />
+                <element signature="class#24666:24973" expanded="false" />
+                <element signature="e#25063#25071#0" expanded="true" />
+                <element signature="e#25203#25211#0" expanded="true" />
+                <element signature="class#25351:26044" expanded="false" />
+                <element signature="class#26083:26945" expanded="false" />
+                <element signature="class#26990:27343" expanded="false" />
+                <element signature="class#27621:28892" expanded="false" />
+                <element signature="class#29115:34779" expanded="false" />
+                <element signature="e#29569#33737#0" expanded="true" />
+                <element signature="e#30068#30076#0" expanded="true" />
+                <element signature="e#30981#30989#0" expanded="true" />
+                <element signature="e#33736#33737#0" expanded="true" />
+                <element signature="class#34887:35894" expanded="false" />
+                <element signature="class#36033:36860" expanded="false" />
+                <element signature="class#36899:37616" expanded="false" />
+                <element signature="class#38995:41860" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -119,29 +132,30 @@
       <find>mainPage</find>
       <find>grid</find>
       <find>textfield</find>
-      <find>login</find>
       <find>listview</find>
       <find>loginS</find>
       <find>connect</find>
       <find>emi</find>
       <find>emit(</find>
       <find>register</find>
-      <find>submit</find>
       <find>sub</find>
       <find>logNotice</find>
       <find>logUser</find>
       <find>user</find>
-      <find>typePassword</find>
       <find>sendMessage</find>
       <find>image</find>
       <find>user.</find>
-      <find>contact</find>
       <find>getProperty</find>
       <find>download</find>
       <find>window</find>
       <find>emit</find>
       <find>set(!</find>
       <find>upload</find>
+      <find>submit</find>
+      <find>typePassword</find>
+      <find>ListView</find>
+      <find>contact</find>
+      <find>login</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -169,8 +183,8 @@
         <option value="$PROJECT_DIR$/src/sample/User.java" />
         <option value="$PROJECT_DIR$/src/sample/Friend.java" />
         <option value="$PROJECT_DIR$/src/sample/ChatApplication.java" />
-        <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/sample/Constants.java" />
+        <option value="$PROJECT_DIR$/src/sample/Main.java" />
       </list>
     </option>
   </component>
@@ -956,10 +970,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="676" column="70" lean-forward="false" selection-start-line="676" selection-start-column="70" selection-end-line="676" selection-end-column="70" />
+        <state relative-caret-position="163">
+          <caret line="629" column="10" lean-forward="false" selection-start-line="629" selection-start-column="10" selection-end-line="629" selection-end-column="10" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="class#Serializer#0" expanded="false" />
             <element signature="e#2838#2846#0" expanded="true" />
             <element signature="e#2903#2911#0" expanded="true" />
             <element signature="e#2975#2984#0" expanded="true" />
@@ -974,21 +988,33 @@
             <element signature="class#5528:5827" expanded="false" />
             <element signature="class#5875:6080" expanded="false" />
             <element signature="class#6136:6504" expanded="false" />
+            <element signature="class#6604:7352" expanded="false" />
             <element signature="class#7409:7818" expanded="false" />
             <element signature="class#7875:8410" expanded="false" />
-            <element signature="class#11629:12104" expanded="false" />
-            <element signature="class#12148:14681" expanded="false" />
-            <element signature="class#14934:20765" expanded="false" />
-            <element signature="e#23937#23945#0" expanded="true" />
-            <element signature="e#24077#24085#0" expanded="true" />
-            <element signature="class#24225:24918" expanded="false" />
-            <element signature="class#24957:25819" expanded="false" />
-            <element signature="class#25864:26217" expanded="false" />
-            <element signature="e#28443#32611#0" expanded="true" />
-            <element signature="e#28942#28950#0" expanded="true" />
-            <element signature="e#29855#29863#0" expanded="true" />
-            <element signature="e#32610#32611#0" expanded="true" />
-            <element signature="class#34907:35725" expanded="false" />
+            <element signature="class#8463:9963" expanded="false" />
+            <element signature="class#10010:10171" expanded="false" />
+            <element signature="e#10090#10091#0" expanded="true" />
+            <element signature="e#10164#10165#0" expanded="true" />
+            <element signature="class#11880:12355" expanded="false" />
+            <element signature="class#12399:14932" expanded="false" />
+            <element signature="class#14966:17276" expanded="false" />
+            <element signature="class#17520:23351" expanded="false" />
+            <element signature="class#24666:24973" expanded="false" />
+            <element signature="e#25063#25071#0" expanded="true" />
+            <element signature="e#25203#25211#0" expanded="true" />
+            <element signature="class#25351:26044" expanded="false" />
+            <element signature="class#26083:26945" expanded="false" />
+            <element signature="class#26990:27343" expanded="false" />
+            <element signature="class#27621:28892" expanded="false" />
+            <element signature="class#29115:34779" expanded="false" />
+            <element signature="e#29569#33737#0" expanded="true" />
+            <element signature="e#30068#30076#0" expanded="true" />
+            <element signature="e#30981#30989#0" expanded="true" />
+            <element signature="e#33736#33737#0" expanded="true" />
+            <element signature="class#34887:35894" expanded="false" />
+            <element signature="class#36033:36860" expanded="false" />
+            <element signature="class#36899:37616" expanded="false" />
+            <element signature="class#38995:41860" expanded="false" />
           </folding>
         </state>
       </provider>
