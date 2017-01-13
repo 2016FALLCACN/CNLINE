@@ -159,8 +159,8 @@ io.on('connection', function(socket) {
 		
 	});
 
-	socket.on('fileUpload',function(objectName , filename, data){
-		console.log("[File to]: "+objectName);
+	socket.on('fileUpload',function(senderName, receiverName , filename, data){
+		console.log("[File to]: "+receiverName);
 		console.log("[File Name]: "+filename);
 
 		/* send to the other */
@@ -169,27 +169,26 @@ io.on('connection', function(socket) {
 		var find = false;
 		for(i in userArray) {
             var validUser = userArray[i].toString().split(":");
-			if(validUser[0] === objectName){
+			if(validUser[0] === receiverName && receiverName != ""){
 				find = true;
 				console.log("FIND YOU!");
 			}
 		}
         
 		if (find) {
-            fs.stat(rootDir+'/'+objectName, function(err, stats) {
+            fs.stat(rootDir+'/'+receiverName, function(err, stats) {
                 if (err && err.errno === 34) {
                     console.log("no such directory");
                     io.to(socket.id).emit('uploadStatus', "fail");
                 }
                 else {
-                    console.log(client_name[my_client_num]);
-                    var writeDestDir = rootDir+'/'+objectName+'/'+client_name[my_client_num];
+                    var writeDestDir = rootDir+'/'+receiverName+'/'+senderName;
                     try {
                         fs.accessSync(writeDestDir);
                     } catch (e) {
                         fs.mkdirSync(writeDestDir);
                     }
-                    fs.writeFile(writeDestDir+'/'+filename, data, 'binary');
+                    fs.writeFileSync(writeDestDir+'/'+filename, data, 'binary');
                     console.log("file upload success!");
                     //clients[my_client_num].emit('fileUploadAck', "success");
                     io.to(socket.id).emit('uploadStatus', "success");
@@ -223,7 +222,6 @@ io.on('connection', function(socket) {
                 io.to(socket.id).emit('fileDownloadAck', "", "");
             }
             else {
-                console.log(rootDir+'/'+receiverName+'/'+filename);
                 io.to(socket.id).emit('fileDownloadAck', filename, data);
                 console.log("file download success!");
             }
@@ -233,6 +231,11 @@ io.on('connection', function(socket) {
 
     socket.on('listDownloadFiles', function(receiverName, senderName) {
         var listDir = rootDir+'/'+receiverName+'/'+senderName;
+        try {
+            fs.accessSync(listDir);
+        } catch (e) {
+            console.log("no such directory");
+        }
         fs.readdir(listDir, function(err, files) {
             for (i in files) {
                 console.log(files[i]);
