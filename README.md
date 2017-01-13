@@ -23,3 +23,4 @@ A final project from the course "Computer Networks" held in Fall 2016, Departmen
   - [X] Build Script (10%)
   - Bonus (at most 30%)
     - [X] Password Strength Meter
+    - [X] Toy Chatting Bot

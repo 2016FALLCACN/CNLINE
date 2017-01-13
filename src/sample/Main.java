@@ -706,7 +706,9 @@ public class Main extends Application {
             public void changed(ObservableValue<? extends Boolean> ov,
                 Boolean old_val, Boolean new_val) {
                 /* auto scroll to bottom */
-                messageLog.appendText(nowTalking+": "+nowMessage+"\n");
+                Platform.runLater(() -> {
+                    messageLog.appendText(nowTalking+": "+nowMessage+"\n");
+                });
                 //displayOnScreen.set(!displayOnScreen.get());
             }
         });
