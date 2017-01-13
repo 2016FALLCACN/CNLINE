@@ -537,7 +537,7 @@ public class Main extends Application {
                 int score, baseScore;
                 if (gotPassword.length() >= Constants.PWDMINLEN && gotPassword.length() <= Constants.PWDMAXLEN) {
                     baseScore = 40;
-                    int upperCount = 0, numberCount = 0, symbolCount = 0, bonus = 0;
+                    int upperCount = 0, numberCount = 0, symbolCount = 0, bonus = 0, lowerCount = 0;
                     boolean flatLower = false, flatNumber = false;
                     int excess = gotPassword.length() - Constants.PWDMINLEN;
 
@@ -559,6 +559,7 @@ public class Main extends Application {
                         if (m.matches()) 
                             symbolCount++;
                     }
+                    lowerCount = gotPassword.length() - upperCount - numberCount - symbolCount;
 
                     if (upperCount > 0 && numberCount > 0 && symbolCount > 0)
                         bonus = 25;
@@ -574,7 +575,7 @@ public class Main extends Application {
                     if (m.matches())
                         flatNumber = true;
 
-                    score = baseScore + (excess*3) + (upperCount*5) + (numberCount*4) + (symbolCount*5) + bonus + ( (flatLower)? -20 : 0 ) + ( (flatNumber)? -40 : 0 );
+                    score = baseScore + (excess*3) + (lowerCount*2) + (upperCount*4) + (numberCount*2) + (symbolCount*5) + bonus + ( (flatLower)? -20 : 0 ) + ( (flatNumber)? -40 : 0 );
 
                 }
                 else if (gotPassword.length() == 0) {
