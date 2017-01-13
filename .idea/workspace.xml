@@ -2,6 +2,52 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/AlertBox$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/AlertBox$2.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/AlertBox.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/ChatApplication.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Constants.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Controller.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Friend.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$10.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$11.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$12.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$13.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$14.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$15.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$16.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$17.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$18.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$19.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$2.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$20.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$21$1$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$21$1$2.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$21$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$21.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$22.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$23.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$24.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$25.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$26.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$27.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$3.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$4.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$5.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$6.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$7.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$8.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$9.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main$UserConfig.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Main.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/Serializer.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/User$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/User.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/linux/sample/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/User$1.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/User$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CNLINE/sample/User.class" afterPath="$PROJECT_DIR$/out/production/CNLINE/sample/User.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -64,8 +110,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="866" column="103" lean-forward="false" selection-start-line="866" selection-start-column="103" selection-end-line="866" selection-end-column="103" />
+            <state relative-caret-position="148">
+              <caret line="864" column="67" lean-forward="true" selection-start-line="864" selection-start-column="67" selection-end-line="864" selection-end-column="67" />
               <folding>
                 <element signature="class#Serializer#0" expanded="false" />
                 <element signature="e#2838#2846#0" expanded="true" />
@@ -992,8 +1038,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="866" column="103" lean-forward="false" selection-start-line="866" selection-start-column="103" selection-end-line="866" selection-end-column="103" />
+        <state relative-caret-position="148">
+          <caret line="864" column="67" lean-forward="true" selection-start-line="864" selection-start-column="67" selection-end-line="864" selection-end-column="67" />
           <folding>
             <element signature="class#Serializer#0" expanded="false" />
             <element signature="e#2838#2846#0" expanded="true" />
