@@ -228,8 +228,6 @@ public class Main extends Application {
                 logMessageSender.offer(args[2].toString());
                 logMessage.offer(args[3].toString());
                 logNotice.set(!logNotice.get());
-                
-
             }
             else if (args[0].toString().equals("FIN")) {
                 logTransmit = false;
@@ -629,10 +627,10 @@ public class Main extends Application {
         final ObservableList names = FXCollections.observableArrayList();
         final ArrayList<String> friend = new ArrayList<String>();
         // names.addAll(friend);
-        contact.setItems(names);
-	    contact.getSelectionModel().selectedItemProperty().addListener( new ChangeListener<String>() {
+        //contact.setItems(names);
+        contact.getSelectionModel().selectedItemProperty().addListener( new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> ov,
-                String old_val, String new_val) {
+                                String old_val, String new_val) {
                 System.out.println(new_val);
                 if(!nowTalking.equals(new_val)) {
                     nowTalking = new_val;
@@ -660,6 +658,7 @@ public class Main extends Application {
                     mSocket.disconnect();
                     mSocket.connect();
                     user.clear();
+                    nowTalking = "";
                     loginSuccess = false;
                     TimeUnit.SECONDS.sleep(1);
                 } catch (Exception e) {
@@ -682,6 +681,7 @@ public class Main extends Application {
                 names.clear();
                 names.addAll(friend);
                 contact.setItems(names);
+                nowTalking = "";
             }
         });
 
