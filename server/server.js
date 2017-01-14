@@ -148,6 +148,59 @@ io.on('connection', function(socket) {
 	
 		clients[my_client_num].emit('messageAck', "success");
 
+		// fancy feature 2: talking bot
+
+		if (objectName == "@bot") {
+			if (data == "@help") {
+				var response = ["I thought that even a fool would know how to use it.", "Just type, enter, and done!", "I'm just a bot, not a troubleshooter.", "Don't ask me.", "No way.", "Type '@commands' for more available commands."];
+				var random = Math.floor(Math.random() * response.length);
+				fs.appendFile("message_logs/" + folder_name + "/" + file_name + ".log", "[@bot]" + response[random] + "\n" , 'utf8', function (err) {
+  				if (err) return console.log(err);});
+  				clients[my_client_num].emit('messageFromOther', "@bot", response[random]);
+			}
+			else if (data == "@time") {
+				var d = new Date();
+				month = d.getMonth() + 1;
+				var response = "Ok, let me see... currently it's " + month + "/" + d.getDate() + "/" + d.getFullYear() + ", " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+				fs.appendFile("message_logs/" + folder_name + "/" + file_name + ".log", "[@bot]" + response + "\n" , 'utf8', function (err) {
+  				if (err) return console.log(err);});
+  				clients[my_client_num].emit('messageFromOther', "@bot", response);
+			}
+			else if (data == "@hello") {
+				var response = ["Hello there.", "Oh... are you the first time be in here?", "I'm a toy bot.", "You woke me up!", "zzz", "Go talk to your friends. I feel disturbed."];
+				var random = Math.floor(Math.random() * response.length);
+				fs.appendFile("message_logs/" + folder_name + "/" + file_name + ".log", "[@bot]" + response[random] + "\n" , 'utf8', function (err) {
+  				if (err) return console.log(err);});
+  				clients[my_client_num].emit('messageFromOther', "@bot", response[random]);
+			}
+			else if (data == "@commands") {
+				var response = "@help, @time, @commands, @calc [string to calculate] (depricated), @hello";
+				fs.appendFile("message_logs/" + folder_name + "/" + file_name + ".log", "[@bot]" + response + "\n" , 'utf8', function (err) {
+  				if (err) return console.log(err);});
+  				clients[my_client_num].emit('messageFromOther', "@bot", response);
+			}
+			else if (data.substring(0,5) == "@calc") {
+				var response;
+				try {
+					response = eval(data.substring(5));
+				} catch (err){
+					response = "Did you enter anything valid? Or are there any syntax errors?";
+				}
+				if (response == null)
+					response = "Did you enter anything valid?";
+				fs.appendFile("message_logs/" + folder_name + "/" + file_name + ".log", "[@bot]" + response + "\n" , 'utf8', function (err) {
+  				if (err) return console.log(err);});
+  				clients[my_client_num].emit('messageFromOther', "@bot", response);
+
+			}
+			else {
+				var response = "Sorry, I'm stupid. I couldn't understand what you're saying. (Hint: use '@commands' to get a list of currently available commands)";
+				fs.appendFile("message_logs/" + folder_name + "/" + file_name + ".log", "[@bot]" + response + "\n" , 'utf8', function (err) {
+  				if (err) return console.log(err);});
+  				clients[my_client_num].emit('messageFromOther', "@bot", response);
+			}
+		}
+
 	});
 
 	// [MSGLOG]

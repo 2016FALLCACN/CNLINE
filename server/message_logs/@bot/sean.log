@@ -1,0 +1,10 @@
+[sean]123
+[@bot]Sorry, I'm stupid. I couldn't understand what you're saying. (Hint: use '@commands' to get a list of currently available commands)
+[sean]@commands
+[@bot]@help, @time, @commands, @calc [string to calculate] (depricated), @hello
+[sean]@hello
+[@bot]zzz
+[sean]@time
+[@bot]Ok, let me see... currently it's 1/13/2017, 23:6:30
+[sean]@calc 12+12
+[@bot]24

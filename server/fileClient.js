@@ -10,6 +10,7 @@ client.connect(8001, '140.112.30.34', function() {
 
 var append = 0;
 client.on('data', function(data) {
+    var tail = data.toString().indexOf("<FINISH>");
     if (data.toString() === "ready") {
         console.log("server ready");
         if (args[0] === "upload" || 
@@ -36,8 +37,9 @@ client.on('data', function(data) {
             else {
                 console.log(path.basename(args[3]));
                 client.write(data);
-                for (i = 0; i < 70000000; i++);
-                client.write("finish");
+                for (i = 0; i < 100000000; i++);
+                console.log("[send data]after loop");
+                client.write("<FINISH>");
             }
         });
     }
@@ -51,7 +53,9 @@ client.on('data', function(data) {
         console.log("no such sender");
     }
     else if (data.toString() === "finish") {
+        console.log("receive file finish==============");
         append = 0;
+        client.destroy();
     }
     else {
         if (args[0] === "download") {
@@ -60,9 +64,14 @@ client.on('data', function(data) {
                 append = 1;
             } 
             else {
-                fs.appendFile(args[3], data);
+                fs.appendFileSync(args[3], data);
+                //console.log(data);
             }
             console.log("file download success");
+            if (tail > -1) {
+                console.log("I find the tail. ha ha ha");
+                client.destroy();
+            }
         }
     }
     //console.log('Received: ' + data);
