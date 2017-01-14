@@ -4,7 +4,7 @@ var path = require('path');
 var net = require('net');
 
 var client = new net.Socket();
-client.connect(8001, '127.0.0.1', function() {
+client.connect(8001, '140.112.30.34', function() {
     console.log('Connected');
 });
 
